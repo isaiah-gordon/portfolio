@@ -5,13 +5,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as dat from 'dat.gui'
 
 
-//class Debugger {
-//    constructor() { }
-
-//    mesh()
-//}
-
-
 class Build {
     constructor(scene_arg) {
         this.scene_arg = scene_arg
