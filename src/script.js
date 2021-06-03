@@ -12,7 +12,7 @@ import * as Builder from './my_three_module.js'
 const dot_texture = new THREE.TextureLoader().load('textures/pixel_dot_background.png')
 dot_texture.wrapS = THREE.RepeatWrapping;
 dot_texture.wrapT = THREE.RepeatWrapping;
-dot_texture.repeat.set(150, 150);
+dot_texture.repeat.set(200, 200);
 
 
 // Debug
@@ -28,18 +28,62 @@ const scene = new THREE.Scene()
 // = = = = = = MY THREE MODULE = = = = = =
 // Using my module to build some text geometry
 
-const build = new Builder.Build(scene)
+const load = new Builder.Load(scene, gui)
+const create = new Builder.Create(scene)
+const debug = new Builder.Debug(gui)
 
-build.text("ISAIAH GORDON", 0.18, 0.04, [-1.05, 0.01, -1], [0, 0, 0])
-build.text("Developer & IT Pro", 0.08, 0, [-0.9, 0.001, -0.7], [-1.571, 0, 0], gui)
+var nameStatue
+load.text(nameStatue, "ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.5, 0.135, -1], [0, 0, 0], "Name Statue")
 
-build.pointLight(0.85, 0xcabbbb, [1.2, 0.45, -0.26])
-build.pointLight(0.29, 0xcabbbb, [-1.18, 0.27, -0.7])
-build.pointLight(0.82, 0xcabbbb, [-6.52, 15, -15], gui)
+var titleStatue
+load.text(titleStatue, "Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.26, 0.03, -1], [0, 0, 0], "Title Statue")
+
+// SPOTLIGHT 1
+const spotLight1 = new create.spotLight(1.3, 0xffe4d0, [0.01, 1.6, -0.01], [0.1, 0.01, -0.9])
+scene.add(spotLight1)
+debug.spotLight(spotLight1, 'Spot light 1')
+
+// SPOTLIGHT 2
+const spotLight2 = new create.spotLight(1.5, 0xff7979, [0.14, 1.66, 2.11], [0.2, 0.01, 1])
+scene.add(spotLight2)
+// debug.spotLight(spotLight2, 'Spot light 2')
+
+
+// Spotlight Transitions
+document.addEventListener('scroll', () => {
+    // console.log(window.scrollY)
+    if (window.scrollY < 780) {
+        spotLight1.intensity = 1.5
+        spotLight2.intensity = 0
+    }
+    if (window.scrollY > 780) {
+        spotLight1.intensity = 0
+        spotLight2.intensity = 1.5
+    }
+})
+
+var projectsStatue
+load.text(projectsStatue, "PROJECTS", 0.1, 0xf2f2f2, 0.02, [-0.323, 0.01, 0.669], [0, 0, 0])
+
+var longText = `
+Too much garbage in your face? There is
+plenty of space out in space! BnL Starliners
+leaving each day. We'll clean up the mess
+while you're away.
+`
+
+var longTestMesh
+load.text(longTestMesh, longText, 0.037, 0x545454, 0, [-0.32, 0.001, 0.78], [-1.571, 0, 0])
+
+var skillsStatue
+load.text(skillsStatue, "SKILLS", 0.1, 0xf2f2f2, 0.02, [-0.103, 0.01, 4], [0, 0.4, 0])
 
 // The sun is a deadly lazer!
-const hemLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 0.5);
+const hemLight = new THREE.HemisphereLight(0xbbddff, 0x080820, 0.1);
 scene.add(hemLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
+scene.add(directionalLight);
 
 
 // Objects
@@ -47,13 +91,13 @@ const floor_plane = new THREE.PlaneGeometry(30.0, 30.0, 1, 1)
 
 
 // Materials
-const material = new THREE.MeshPhongMaterial({ map: dot_texture, side: THREE.DoubleSide });
+const material = new THREE.MeshStandardMaterial({ map: dot_texture, side: THREE.DoubleSide });
 material.roughness = 0.95
 
 
 // Mesh
 // Scene Floor
-const floor = new THREE.Mesh(floor_plane,material)
+const floor = new THREE.Mesh(floor_plane, material)
 scene.add(floor)
 
 floor.rotation.x = 1.5708
@@ -82,25 +126,39 @@ window.addEventListener('resize', () =>
 })
 
 // Camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000)
-console.log(0.001*innerWidth)
-camera.position.set(0.97, 1, 0.4);
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 
-camera.zoom = 0.0004 * (innerWidth + innerHeight)
+camera.position.set(0.14, 0.55, 0);
+camera.rotation.set(-0.66, 0, 0)
+
+camera.zoom = 0.7
+camera.fov = 45
+
+console.log(innerWidth)
+
+// Mobile Responsive Camera Settings
+if (innerWidth < 1000) {
+
+    camera.position.set(0.14, 0.55, 0);
+    camera.rotation.set(-0.66, 0, 0)
+
+    camera.zoom = 0.35
+    camera.fov = 45
+}
+
+window.addEventListener('resize', function () {
+    "use strict";
+    window.location.reload();
+});
+
 camera.updateProjectionMatrix();
-
-
-camera.rotation.x = -0.66
-camera.rotation.y = 0.44
-camera.rotation.z = 0.31
-
 
 scene.add(camera)
 
 const camera_angle = gui.addFolder('Camera')
 
 camera_angle.add(camera.position, 'x').min(-1).max(2).step(0.01).name("X Pos")
-camera_angle.add(camera.position, 'y').min(-1).max(1).step(0.01).name("Y Pos")
+camera_angle.add(camera.position, 'y').min(-1).max(3).step(0.01).name("Y Pos")
 camera_angle.add(camera.position, 'z').min(-1).max(1).step(0.01).name("Z Pos")
 
 camera_angle.add(camera.rotation, 'x').min(-2).max(2).step(0.01).name("X Rot")
@@ -125,7 +183,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  */
 
 
-document.addEventListener('mousemove', onDocumentMouseMove)
+// document.addEventListener('mousemove', onDocumentMouseMove)
 
 const windowX = window.innerWidth / 2;
 const windowY = window.innerHeight / 2;
@@ -136,9 +194,10 @@ function onDocumentMouseMove(event) {
     mouseY = (event.clientY - windowY)
 }
 
+
 const updateCamera = (event) => {
     // console.log(window.scrollY)
-    camera.position.z = window.scrollY * .001
+    camera.position.z = window.scrollY * .002
 }
 
 window.addEventListener('scroll', updateCamera)
@@ -150,6 +209,8 @@ const tick = () =>
 {
 
     const elapsedTime = clock.getElapsedTime()
+
+    // spotLightHelper.update();
 
     // Render
     renderer.render(scene, camera)

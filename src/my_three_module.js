@@ -3,102 +3,117 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as dat from 'dat.gui'
+import { Mesh } from 'three';
 
 
-class Build {
-    constructor(scene_arg) {
-        this.scene_arg = scene_arg
+class Debug {
+    constructor(debug_gui) {
+        this.debug_gui = debug_gui
     }
 
-    text(text, size, height, position, rotation, debug) {
-        let fontLoader = new THREE.FontLoader();
-        // let test_text = this.scene
+    objectDebug(obj, folderName) {
+
+        var object_debug = this.debug_gui.addFolder(folderName)
+
+        object_debug.add(obj.position, 'x').min(-3).max(3).step(0.005).name("<b>X Position</b> &#x1F697")
+        object_debug.add(obj.position, 'y').min(-3).max(3).step(0.005).name("<b>Y Position</b> &#x1F446")
+        object_debug.add(obj.position, 'z').min(-3).max(3).step(0.005).name("<b>Z Position</b> &#x1F698")
+
+        object_debug.add(obj.rotation, 'x').min(-2).max(2).step(0.01).name("X Rotation")
+        object_debug.add(obj.rotation, 'y').min(-2).max(2).step(0.01).name("Y Rotation")
+        object_debug.add(obj.rotation, 'z').min(-2).max(2).step(0.01).name("Z Rotation")
+    }
+
+    spotLight(light, folderName) {
+        var light_debug = this.debug_gui.addFolder(folderName)
+
+        light_debug.add(light.position, 'x').min(-8).max(8).step(0.01).name("X Pos")
+        light_debug.add(light.position, 'y').min(-8).max(8).step(0.01).name("Y Pos")
+        light_debug.add(light.position, 'z').min(-16).max(8).step(0.01).name("Z Pos")
+
+        // light.target.updateMatrixWorld();
+
+
+        light_debug.add(light, 'intensity').min(0).max(6).step(0.01).name("Intensity")
+
+        const lightColor = {
+            color: 0xffffff
+        }
+
+        light_debug.addColor(lightColor, 'color')
+            .onChange(() => {
+                light.color.set(lightColor.color)
+            })
+    }
+}
+
+
+class Load {
+    constructor(scene_arg, debug_gui) {
+        this.scene_arg = scene_arg
+        this.debug_gui = debug_gui
+    }
+
+    text(meshContainer, text, size, color, height, position, rotation, debugFolder) {
+
         const scene_arg = this.scene_arg
+        const debug_gui = this.debug_gui
+
+        let fontLoader = new THREE.FontLoader();
         fontLoader.load('fonts/Poppins_SemiBold_Regular.json', function (font) {
+
             let geometrySetting = {
                 font: font,
                 size: size,
                 height: height,
-                curveSegments: 7,
+                curveSegments: 10,
             };
 
-            let textMaterial = new THREE.MeshLambertMaterial({ color: 0xf2f2f2 });
+            let textMaterial = new THREE.MeshStandardMaterial({ color: color });
 
-            // Name Text Statue
+
+            // textMesh container
             let textGeometry = new THREE.TextGeometry(text, geometrySetting);
-            let textMesh = new THREE.Mesh(textGeometry, textMaterial);
-            textMesh.position.set(...position);
-            textMesh.rotation.set(...rotation);
+            meshContainer = new THREE.Mesh(textGeometry, textMaterial);
+            meshContainer.position.set(...position);
+            meshContainer.rotation.set(...rotation);
 
-            scene_arg.add(textMesh);
+            scene_arg.add(meshContainer)
 
-            if (debug != undefined) {
-                const text_debug = debug.addFolder('Text')
-
-                text_debug.add(textMesh.position, 'x').min(-1).max(1).step(0.001).name("X Pos")
-                text_debug.add(textMesh.position, 'y').min(-1).max(1).step(0.001).name("Y Pos")
-                text_debug.add(textMesh.position, 'z').min(-1).max(1).step(0.001).name("Z Pos")
-
-                text_debug.add(textMesh.rotation, 'x').min(-2).max(2).step(0.001).name("X Rot")
-                text_debug.add(textMesh.rotation, 'y').min(-2).max(2).step(0.001).name("Y Rot")
-                text_debug.add(textMesh.rotation, 'z').min(-2).max(2).step(0.001).name("Z Rot")
+            if (debugFolder) {
+                const debug = new Debug(debug_gui)
+                debug.objectDebug(meshContainer, debugFolder)
             }
         })
+
     }
+}
 
-    pointLight(intensity, color, position, debug) {
-        const pointLight = new THREE.PointLight(color, intensity)
 
+class Create {
+    constructor() {}
+
+    pointLight(intensity, color, position) {
+        var pointLight = new THREE.PointLight(color, intensity)
         pointLight.position.set(...position)
-        this.scene_arg.add(pointLight)
 
+        return pointLight
+    }
 
-        if (debug != undefined) {
-            const light = debug.addFolder('Light')
+    spotLight(intensity, color, position, targetPosition) {
+        var spotLight = new THREE.SpotLight(color, intensity)
+        spotLight.position.set(...position)
+        spotLight.penumbra = 0.18
 
-            light.add(pointLight.position, 'x').min(-8).max(8).step(0.01).name("X Pos")
-            light.add(pointLight.position, 'y').min(-8).max(8).step(0.01).name("Y Pos")
-            light.add(pointLight.position, 'z').min(-16).max(8).step(0.01).name("Z Pos")
+        spotLight.target.position.set(...targetPosition);
+        spotLight.target.updateMatrixWorld();
 
-            light.add(pointLight, 'intensity').min(0).max(6).step(0.01).name("Intensity")
+        spotLight.angle = 0.4
 
-            const lightColor = {
-                color: 0xffffff
-            }
-
-            light.addColor(lightColor, 'color')
-                .onChange(() => {
-                    pointLight.color.set(lightColor.color)
-                })
-
-            const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.1)
-            this.scene_arg.add(pointLightHelper)
-        }
+        return spotLight
     }
 
 }
 
-class OtherClass {
-    constructor(class_arg) {
-        this.arg = class_arg
-    }
 
-    text(spec) { 
-        let some_math = console.log(spec + 3)
-        return (spec + 3)
-    }
-
-    name(spec) {
-        return this.arg
-    }
-}
-
-// exports.Build = Build;
-export { Build, OtherClass }
-
-
-// new Build('Hello class!').square('Hi function!')
-
-//exports.buildText = function () {
-//    console.log("It worked!")
-//}
+export { Debug, Load, Create }
