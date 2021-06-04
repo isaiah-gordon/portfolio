@@ -52,12 +52,17 @@ class Load {
     constructor(scene_arg, debug_gui) {
         this.scene_arg = scene_arg
         this.debug_gui = debug_gui
+
+        console.log(scene_arg)
     }
 
     text(_callback, text, size, color, height, position, rotation, debugFolder) {
 
         const scene_arg = this.scene_arg
         const debug_gui = this.debug_gui
+
+        var textMesh = new THREE.Mesh();
+        scene_arg.add(textMesh)
 
         let fontLoader = new THREE.FontLoader();
         fontLoader.load('fonts/Poppins_SemiBold_Regular.json', function (font) {
@@ -71,15 +76,14 @@ class Load {
 
             let textMaterial = new THREE.MeshStandardMaterial({ color: color });
 
-            // textMesh container
             let textGeometry = new THREE.TextGeometry(text, geometrySetting);
-            var textMesh = new THREE.Mesh(textGeometry, textMaterial);
-            
-            textMesh.position.set(...position);
-            textMesh.rotation.set(...rotation);
 
-            textMesh.name = "nameStatue"
-            scene_arg.add(textMesh)
+            textMesh.geometry = textGeometry
+            textMesh.material = textMaterial
+
+            textMesh.matrixAutoUpdate = false;
+            textMesh.updateMatrix();
+            textMesh.matrixAutoUpdate = true;
 
             if (_callback) {
                 _callback()
@@ -91,6 +95,10 @@ class Load {
             }
         })
 
+        textMesh.position.set(...position);
+        textMesh.rotation.set(...rotation);
+
+        return textMesh
     }
 }
 

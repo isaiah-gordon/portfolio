@@ -4,10 +4,10 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as dat from 'dat.gui'
 
+import gsap from 'gsap'
+
 // Import my module.
 import * as Builder from './my_three_module.js'
-import { Mesh } from 'three';
-
 
 // Loader
 const dot_texture = new THREE.TextureLoader().load('textures/pixel_dot_background.png')
@@ -25,8 +25,6 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-
-
 // = = = = = = MY THREE MODULE = = = = = =
 // Using my module to build some text geometry
 
@@ -34,15 +32,9 @@ const load = new Builder.Load(scene, gui)
 const create = new Builder.Create(scene)
 const debug = new Builder.Debug(gui)
 
+var nameStatue = load.text(undefined, "ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.5, 0.135, -1], [0, 0, 0])
+debug.objectDebug(nameStatue, "Name Statue")
 
-function nameStatueCallback() {
-    var nameStatue = scene.getObjectByName("nameStatue")
-    console.log(nameStatue)
-
-    debug.objectDebug(nameStatue, "Name Statue")
-}
-
-load.text(nameStatueCallback, "ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.5, 0.135, -1], [0, 0, 0])
 load.text(undefined, "Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.26, 0.03, -1], [0, 0, 0], "Title Statue")
 
 // SPOTLIGHT 1
@@ -53,19 +45,17 @@ debug.spotLight(spotLight1, 'Spot light 1')
 // SPOTLIGHT 2
 const spotLight2 = new create.spotLight(1.5, 0xff7979, [0.14, 1.66, 2.11], [0.2, 0.01, 1])
 scene.add(spotLight2)
-// debug.spotLight(spotLight2, 'Spot light 2')
-
 
 // Spotlight Transitions
 document.addEventListener('scroll', () => {
     // console.log(window.scrollY)
     if (window.scrollY < 780) {
-        spotLight1.intensity = 1.5
-        spotLight2.intensity = 0
+        gsap.to(spotLight1, { intensity: 1.5, duration: 1.5 })
+        gsap.to(spotLight2, { intensity: 0, duration: 1.5 })
     }
     if (window.scrollY > 780) {
-        spotLight1.intensity = 0
-        spotLight2.intensity = 1.5
+        gsap.to(spotLight1, { intensity: 0, duration: 1.5 })
+        gsap.to(spotLight2, { intensity: 1.5, duration: 1.5 })
     }
 })
 
@@ -182,9 +172,57 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-/**
- * Animate
- */
+// = = = = = = = = = = = ANIMATIONS = = = = = = = = = = = = = = =
+
+// = = = = = Raycasting = = = = =
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+function onMouseMove(event) {
+
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+}
+
+console.log(scene.children)
+
+
+let objs = [scene.children[0]]
+function render() {
+
+    // update the picking ray with the camera and mouse position
+    raycaster.setFromCamera(mouse, camera);
+
+    // calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects(objs) //scene.children
+
+    for (const intersect of intersects) {
+        gsap.to(intersect.object.position, { y: 0.15, duration: 1 })
+    }
+
+    for (const object of objs) {
+        if (!intersects.find(intersect => intersect.object === object)) {
+            gsap.to(object.position, { y: 0.12, duration: 1 })
+            // tl1.restart()
+        }
+    }
+    
+
+    renderer.render(scene, camera);
+
+}
+
+window.addEventListener('mousemove', onMouseMove, false);
+
+console.log(render())
+
+function iAmConfusion() {
+
+}
+
+window.requestAnimationFrame(render);
 
 
 // document.addEventListener('mousemove', onDocumentMouseMove)
@@ -208,7 +246,8 @@ window.addEventListener('scroll', updateCamera)
 
 const clock = new THREE.Clock()
 
-// Animation Loop
+
+// = = = = = Animation Loop = = = = =
 const tick = () =>
 {
 
@@ -216,11 +255,16 @@ const tick = () =>
 
     // spotLightHelper.update();
 
+    render()
+
     // Render
     renderer.render(scene, camera)
+    //console.log(tickCount)
+    //console.log(elapsedTime)
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
+
 }
 
 tick()
