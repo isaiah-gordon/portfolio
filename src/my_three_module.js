@@ -54,7 +54,7 @@ class Load {
         this.debug_gui = debug_gui
     }
 
-    text(meshContainer, text, size, color, height, position, rotation, debugFolder) {
+    text(_callback, text, size, color, height, position, rotation, debugFolder) {
 
         const scene_arg = this.scene_arg
         const debug_gui = this.debug_gui
@@ -71,18 +71,23 @@ class Load {
 
             let textMaterial = new THREE.MeshStandardMaterial({ color: color });
 
-
             // textMesh container
             let textGeometry = new THREE.TextGeometry(text, geometrySetting);
-            meshContainer = new THREE.Mesh(textGeometry, textMaterial);
-            meshContainer.position.set(...position);
-            meshContainer.rotation.set(...rotation);
+            var textMesh = new THREE.Mesh(textGeometry, textMaterial);
+            
+            textMesh.position.set(...position);
+            textMesh.rotation.set(...rotation);
 
-            scene_arg.add(meshContainer)
+            textMesh.name = "nameStatue"
+            scene_arg.add(textMesh)
 
+            if (_callback) {
+                _callback()
+            }
+            
             if (debugFolder) {
                 const debug = new Debug(debug_gui)
-                debug.objectDebug(meshContainer, debugFolder)
+                debug.objectDebug(textMesh, debugFolder)
             }
         })
 

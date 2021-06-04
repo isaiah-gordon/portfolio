@@ -6,6 +6,7 @@ import * as dat from 'dat.gui'
 
 // Import my module.
 import * as Builder from './my_three_module.js'
+import { Mesh } from 'three';
 
 
 // Loader
@@ -25,6 +26,7 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 
+
 // = = = = = = MY THREE MODULE = = = = = =
 // Using my module to build some text geometry
 
@@ -32,11 +34,16 @@ const load = new Builder.Load(scene, gui)
 const create = new Builder.Create(scene)
 const debug = new Builder.Debug(gui)
 
-var nameStatue
-load.text(nameStatue, "ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.5, 0.135, -1], [0, 0, 0], "Name Statue")
 
-var titleStatue
-load.text(titleStatue, "Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.26, 0.03, -1], [0, 0, 0], "Title Statue")
+function nameStatueCallback() {
+    var nameStatue = scene.getObjectByName("nameStatue")
+    console.log(nameStatue)
+
+    debug.objectDebug(nameStatue, "Name Statue")
+}
+
+load.text(nameStatueCallback, "ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.5, 0.135, -1], [0, 0, 0])
+load.text(undefined, "Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.26, 0.03, -1], [0, 0, 0], "Title Statue")
 
 // SPOTLIGHT 1
 const spotLight1 = new create.spotLight(1.3, 0xffe4d0, [0.01, 1.6, -0.01], [0.1, 0.01, -0.9])
@@ -62,8 +69,7 @@ document.addEventListener('scroll', () => {
     }
 })
 
-var projectsStatue
-load.text(projectsStatue, "PROJECTS", 0.1, 0xf2f2f2, 0.02, [-0.323, 0.01, 0.669], [0, 0, 0])
+load.text(undefined, "PROJECTS", 0.1, 0xf2f2f2, 0.02, [-0.323, 0.01, 0.669], [0, 0, 0])
 
 var longText = `
 Too much garbage in your face? There is
@@ -72,11 +78,9 @@ leaving each day. We'll clean up the mess
 while you're away.
 `
 
-var longTestMesh
-load.text(longTestMesh, longText, 0.037, 0x545454, 0, [-0.32, 0.001, 0.78], [-1.571, 0, 0])
+load.text(undefined, longText, 0.037, 0x545454, 0, [-0.32, 0.001, 0.78], [-1.571, 0, 0])
 
-var skillsStatue
-load.text(skillsStatue, "SKILLS", 0.1, 0xf2f2f2, 0.02, [-0.103, 0.01, 4], [0, 0.4, 0])
+load.text(undefined, "SKILLS", 0.1, 0xf2f2f2, 0.02, [-0.103, 0.01, 4], [0, 0.4, 0])
 
 // The sun is a deadly lazer!
 const hemLight = new THREE.HemisphereLight(0xbbddff, 0x080820, 0.1);
