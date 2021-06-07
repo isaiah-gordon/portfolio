@@ -43,7 +43,7 @@ window.addEventListener('resize', () => {
 // Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 camera.position.set(0.14, 0.65, 0);
-camera.rotation.set(-0.84, 0, 0)
+camera.rotation.set(-0.66, 0, 0)
 camera.zoom = 0.7
 camera.fov = 45
 
@@ -98,51 +98,85 @@ floor.rotation.x = 1.5708
 
 const load = new Builder.Load(scene, gui)
 const create = new Builder.Create(scene)
-
 const addAsset = new Assets.Create(scene)
 
-
-var nameStatue = load.text(undefined, "ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.47, 0.11, -1], [-0.26, 0, 0])
-debug.object(nameStatue, "Name Statue")
-
-load.text(undefined, "Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.29, 0, 0], "Title Statue")
-
-// SPOTLIGHT 1
-const spotLight1 = new create.spotLight(0, 0xd0caf7, [3.54, 8, 7.4], [0.1, 0.01, -0.9])
+// TOP OF PAGE
+const spotLight1 = new create.spotLight(0.06, 1, 0xd0caf7, [3.54, 8, 7.4], [0.1, 0.01, -0.9])
 scene.add(spotLight1)
+load.text("ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.47, 0.11, -1], [-0.26, 0, 0])
+load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.29, 0, 0])
 
-// SPOTLIGHT 2
-const spotLight2 = new create.spotLight(1.22, 0xd0caf7, [0.14, 1.66, 2.11], [0.2, 0.01, 1])
+
+
+// FLOOR BOARD SECTION
+const spotLight2 = new create.spotLight(0.3, 1.4, 0xffaea3, [0.35, 2.65, 2.9], [0.2, 0.01, 1.3])
 scene.add(spotLight2)
 debug.light(spotLight2, 'Spot Light')
 
-//// Spotlight Transitions
-//document.addEventListener('scroll', () => {
-//    // console.log(window.scrollY)
-//    if (window.scrollY < 780) {
-//        gsap.to(spotLight1, { intensity: 1.22, duration: 1 })
-//        gsap.to(spotLight2, { intensity: 0, duration: 1 })
-//    }
-//    if (window.scrollY > 780) {
-//        gsap.to(spotLight1, { intensity: 0, duration: 1 })
-//        gsap.to(spotLight2, { intensity: 1.5, duration: 1 })
-//    }
-//})
+const spotLight2B = new create.spotLight(0.3, 0.6, 0xffcbcb, [-1.75, 0.89, 2.9], [-0.2, 0.01, 1.6])
+scene.add(spotLight2B)
+debug.light(spotLight2B, 'Spot Light B')
 
-load.text(undefined, "PROJECTS", 0.1, 0xf2f2f2, 0.02, [-0.323, 0.01, 0.669], [0, 0, 0])
+// Titles
+load.text("PROJECTS", 0.1, 0xf2f2f2, 0.02, [-0.525, 0.01, 0.535], [0, 0.36, 0])
+load.text("Floor Board", 0.08, 0xE73E43, 0.006, [-0.4, 0, 0.82], [-1.5708, 0, 0])
 
-var longText = `
-Too much garbage in your face? There is
-plenty of space out in space! BnL Starliners
-leaving each day. We'll clean up the mess
-while you're away.
-`
+// Bill Board
+load.model("models/section_art/floor_board/fb_bill_board_image.gltf", [0.53, 0.18, 0.8], [0, -0.44, 0], [0.3, 0.3, 0.3])
+const billBoardLight = new create.spotLight(0.2, 1.4, 0xffaea3, [0.19, -0.69, 1.84], [0.53, 0.18, 0.8])
+scene.add(billBoardLight)
 
-load.text(undefined, longText, 0.037, 0x545454, 0, [-0.32, 0.001, 0.78], [-1.571, 0, 0])
+// Description 1
+load.text("Software that allows McDonald's teams", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.9], [-1.571, 0, 0])
+load.text("to visulize sales data in real time!", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.97], [-1.571, 0, 0])
 
-load.text(undefined, "SKILLS", 0.1, 0xf2f2f2, 0.02, [-0.103, 0.01, 4], [0, 0.4, 0])
+// McD Store
+var mcd = load.model("models/section_art/floor_board/mcd_store.gltf", [-0.17, 0.09, 1.33], [0, 0.9, 0], [0.2, 0.2, 0.2])
+debug.object(mcd, "McDonalds")
 
-// Camera here?
+// McD Sign
+var mcdSign = load.model("models/section_art/floor_board/mcd_sign.gltf", [-0.26, 0.09, 1.47], [0, 0.36, 0], [0.4, 0.4, 0.4])
+debug.object(mcdSign, "Sign")
+
+// Description 2
+load.text("Currently being tested at a", 0.03, 0x878787, 0, [-0.04, 0.001, 1.15], [-1.571, 0, 0])
+load.text("few locations, my software is", 0.03, 0x878787, 0, [-0.04, 0.001, 1.21], [-1.571, 0, 0])
+load.text("displayed on a board located", 0.03, 0x878787, 0, [-0.04, 0.001, 1.27], [-1.571, 0, 0])
+load.text('"on the floor" where staff can', 0.03, 0x878787, 0, [-0.04, 0.001, 1.33], [-1.571, 0, 0])
+load.text('see. It shows how much of a', 0.03, 0x878787, 0, [-0.04, 0.001, 1.39], [-1.571, 0, 0])
+load.text('certain product is being sold.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.45], [-1.571, 0, 0])
+
+// French Fries
+var fries = load.model("models/section_art/floor_board/fry_group.gltf", [0.44, 0.06, 1.7], [0, 0, 0], [0.45, 0.45, 0.45])
+debug.object(fries, "French Fries")
+
+// Data Chart
+var bars = load.model("models/section_art/floor_board/graph_bars.gltf", [0.62, 0.06, 1.6], [0, 0, 0], [0.55, 0.55, 0.55])
+debug.object(bars, "Bars")
+
+// Description 3
+load.text("The locations that use my", 0.03, 0x878787, 0, [-0.394, 0.001, 1.6], [-1.571, 0, 0])
+load.text("software have a higher average", 0.03, 0x878787, 0, [-0.394, 0.001, 1.66], [-1.571, 0, 0])
+load.text("check because managers can", 0.03, 0x878787, 0, [-0.394, 0.001, 1.72], [-1.571, 0, 0])
+load.text("see how much their team upsells.", 0.03, 0x878787, 0, [-0.394, 0.001, 1.78], [-1.571, 0, 0])
+
+
+
+load.text("COMING SOON", 0.1, 0xf2f2f2, 0.02, [-0.22, 0.01, 4], [0, 0.3, 0])
+
+
+// Spotlight Transitions
+document.addEventListener('scroll', () => {
+    // console.log(window.scrollY)
+    if (window.scrollY < 700) {
+        gsap.to(spotLight1, { intensity: 1.22, duration: 1 })
+        gsap.to(spotLight2, { intensity: 0, duration: 1 })
+    }
+    if (window.scrollY > 700) {
+        gsap.to(spotLight1, { intensity: 0, duration: 1 })
+        gsap.to(spotLight2, { intensity: 1.5, duration: 1 })
+    }
+})
 
 
 // Renderer

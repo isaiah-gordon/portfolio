@@ -15,9 +15,9 @@ class Debug {
 
         var object_debug = this.debug_gui.addFolder(folderName)
 
-        object_debug.add(obj.position, 'x').min(-3).max(3).step(0.005).name("<b>X Position</b> &#x1F697")
-        object_debug.add(obj.position, 'y').min(-3).max(3).step(0.005).name("<b>Y Position</b> &#x1F446")
-        object_debug.add(obj.position, 'z').min(-3).max(3).step(0.005).name("<b>Z Position</b> &#x1F698")
+        object_debug.add(obj.position, 'x').min(-2).max(2).name("<b>X Position</b> &#x1F697")
+        object_debug.add(obj.position, 'y').min(-2).max(2).name("<b>Y Position</b> &#x1F446")
+        object_debug.add(obj.position, 'z').min(-2).max(2).name("<b>Z Position</b> &#x1F698")
 
         object_debug.add(obj.rotation, 'x').min(-2).max(2).step(0.01).name("X Rotation")
         object_debug.add(obj.rotation, 'y').min(-2).max(2).step(0.01).name("Y Rotation")
@@ -79,7 +79,7 @@ class Load {
         return modelGroup
     }
 
-    text(_callback, text, size, color, height, position, rotation, debugFolder) {
+    text(text, size, color, height, position, rotation, debugFolder) {
 
         const scene_arg = this.scene_arg
         const debug_gui = this.debug_gui
@@ -107,10 +107,6 @@ class Load {
             textMesh.matrixAutoUpdate = false;
             textMesh.updateMatrix();
             textMesh.matrixAutoUpdate = true;
-
-            if (_callback) {
-                _callback()
-            }
             
             if (debugFolder) {
                 const debug = new Debug(debug_gui)
@@ -141,7 +137,7 @@ class Create {
         return pointLight
     }
 
-    spotLight(intensity, color, position, targetPosition) {
+    spotLight(size, intensity, color, position, targetPosition) {
         var spotLight = new THREE.SpotLight(color, intensity)
         spotLight.position.set(...position)
         spotLight.penumbra = 0.18
@@ -149,7 +145,7 @@ class Create {
         spotLight.target.position.set(...targetPosition);
         spotLight.target.updateMatrixWorld();
 
-        spotLight.angle = 0.4
+        spotLight.angle = size
 
         return spotLight
     }
