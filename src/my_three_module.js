@@ -11,7 +11,7 @@ class Debug {
         this.debug_gui = debug_gui
     }
 
-    objectDebug(obj, folderName) {
+    object(obj, folderName) {
 
         var object_debug = this.debug_gui.addFolder(folderName)
 
@@ -24,7 +24,8 @@ class Debug {
         object_debug.add(obj.rotation, 'z').min(-2).max(2).step(0.01).name("Z Rotation")
     }
 
-    spotLight(light, folderName) {
+
+    light(light, folderName) {
         var light_debug = this.debug_gui.addFolder(folderName)
 
         light_debug.add(light.position, 'x').min(-8).max(8).step(0.01).name("X Pos")
@@ -52,8 +53,30 @@ class Load {
     constructor(scene_arg, debug_gui) {
         this.scene_arg = scene_arg
         this.debug_gui = debug_gui
+    }
 
-        console.log(scene_arg)
+    model(source, position, rotation, scale) {
+
+        const scene_arg = this.scene_arg
+        const gltfLoader = new GLTFLoader()
+
+        //var modelGroup = new THREE.Group()
+        //scene_arg.add(modelGroup)
+
+        var modelGroup = new THREE.Object3D()
+        scene_arg.add(modelGroup)
+
+        gltfLoader.load(source, (gltf) => {
+            scene_arg.add(gltf.scene)
+
+            modelGroup.add(gltf.scene)
+        })
+
+        modelGroup.position.set(...position)
+        modelGroup.rotation.set(...rotation)
+        modelGroup.scale.set(...scale)
+
+        return modelGroup
     }
 
     text(_callback, text, size, color, height, position, rotation, debugFolder) {
@@ -91,7 +114,7 @@ class Load {
             
             if (debugFolder) {
                 const debug = new Debug(debug_gui)
-                debug.objectDebug(textMesh, debugFolder)
+                debug.object(textMesh, debugFolder)
             }
         })
 
@@ -104,11 +127,16 @@ class Load {
 
 
 class Create {
-    constructor() {}
+    constructor(scene_arg) {
+        this.scene_arg = scene_arg
+    }
 
     pointLight(intensity, color, position) {
         var pointLight = new THREE.PointLight(color, intensity)
+
         pointLight.position.set(...position)
+
+        this.scene_arg.add(pointLight)
 
         return pointLight
     }

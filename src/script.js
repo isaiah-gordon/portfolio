@@ -15,7 +15,6 @@ dot_texture.wrapS = THREE.RepeatWrapping;
 dot_texture.wrapT = THREE.RepeatWrapping;
 dot_texture.repeat.set(200, 200);
 
-
 // Debug
 const gui = new dat.GUI()
 
@@ -25,6 +24,7 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+
 // = = = = = = MY THREE MODULE = = = = = =
 // Using my module to build some text geometry
 
@@ -32,30 +32,39 @@ const load = new Builder.Load(scene, gui)
 const create = new Builder.Create(scene)
 const debug = new Builder.Debug(gui)
 
-var nameStatue = load.text(undefined, "ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.5, 0.135, -1], [0, 0, 0])
-debug.objectDebug(nameStatue, "Name Statue")
+// GitHub Button
+var gitHub = load.model('models/buttons/github_button.gltf', [0.54, 0.02, -0.7], [0, 0, 0], [0.7, 1, 0.7])
+var linkedIn = load.model('models/buttons/linkedin_button.gltf', [0.3, 0.02, -0.7], [0, 0, 0], [0.7, 1, 0.7])
+debug.object(linkedIn, "Linked In")
 
-load.text(undefined, "Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.26, 0.03, -1], [0, 0, 0], "Title Statue")
+const gitHubLight1 = create.pointLight(0, 0x6600cd, [0.54, 0.11, -0.7])
+const gitHubLight2 = create.pointLight(0, 0x6600cd, [0.54, 0.03, -0.7])
+
+
+var nameStatue = load.text(undefined, "ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.47, 0.11, -1], [-0.26, 0, 0])
+debug.object(nameStatue, "Name Statue")
+
+load.text(undefined, "Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.29, 0, 0], "Title Statue")
 
 // SPOTLIGHT 1
-const spotLight1 = new create.spotLight(1.3, 0xffe4d0, [0.01, 1.6, -0.01], [0.1, 0.01, -0.9])
+const spotLight1 = new create.spotLight(1.22, 0xd0caf7, [3.54, 8, 7.4], [0.1, 0.01, -0.9])
 scene.add(spotLight1)
-debug.spotLight(spotLight1, 'Spot light 1')
+debug.light(spotLight1, 'Spot light 1')
 
 // SPOTLIGHT 2
-const spotLight2 = new create.spotLight(1.5, 0xff7979, [0.14, 1.66, 2.11], [0.2, 0.01, 1])
+const spotLight2 = new create.spotLight(0, 0xff7979, [0.14, 1.66, 2.11], [0.2, 0.01, 1])
 scene.add(spotLight2)
 
 // Spotlight Transitions
 document.addEventListener('scroll', () => {
     // console.log(window.scrollY)
     if (window.scrollY < 780) {
-        gsap.to(spotLight1, { intensity: 1.5, duration: 1.5 })
-        gsap.to(spotLight2, { intensity: 0, duration: 1.5 })
+        gsap.to(spotLight1, { intensity: 1.22, duration: 1 })
+        gsap.to(spotLight2, { intensity: 0, duration: 1 })
     }
     if (window.scrollY > 780) {
-        gsap.to(spotLight1, { intensity: 0, duration: 1.5 })
-        gsap.to(spotLight2, { intensity: 1.5, duration: 1.5 })
+        gsap.to(spotLight1, { intensity: 0, duration: 1 })
+        gsap.to(spotLight2, { intensity: 1.5, duration: 1 })
     }
 })
 
@@ -76,7 +85,7 @@ load.text(undefined, "SKILLS", 0.1, 0xf2f2f2, 0.02, [-0.103, 0.01, 4], [0, 0.4, 
 const hemLight = new THREE.HemisphereLight(0xbbddff, 0x080820, 0.1);
 scene.add(hemLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.2);
 scene.add(directionalLight);
 
 
@@ -86,7 +95,7 @@ const floor_plane = new THREE.PlaneGeometry(30.0, 30.0, 1, 1)
 
 // Materials
 const material = new THREE.MeshStandardMaterial({ map: dot_texture, side: THREE.DoubleSide });
-material.roughness = 0.95
+material.roughness = 0.8
 
 
 // Mesh
@@ -122,8 +131,8 @@ window.addEventListener('resize', () =>
 // Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 
-camera.position.set(0.14, 0.55, 0);
-camera.rotation.set(-0.66, 0, 0)
+camera.position.set(0.14, 0.65, 0);
+camera.rotation.set(-0.84, 0, 0)
 
 camera.zoom = 0.7
 camera.fov = 45
@@ -133,8 +142,8 @@ console.log(innerWidth)
 // Mobile Responsive Camera Settings
 if (innerWidth < 1000) {
 
-    camera.position.set(0.14, 0.55, 0);
-    camera.rotation.set(-0.66, 0, 0)
+    camera.position.set(0.14, 0.74, 0);
+    camera.rotation.set(-0.92, 0, 0)
 
     camera.zoom = 0.35
     camera.fov = 45
@@ -190,22 +199,40 @@ console.log(scene.children)
 
 
 let objs = [scene.children[0]]
+console.log(objs[0].children)
 function render() {
 
     // update the picking ray with the camera and mouse position
     raycaster.setFromCamera(mouse, camera);
 
     // calculate objects intersecting the picking ray
-    const intersects = raycaster.intersectObjects(objs) //scene.children
+    const intersects = raycaster.intersectObjects(objs, true) //scene.children
 
-    for (const intersect of intersects) {
-        gsap.to(intersect.object.position, { y: 0.15, duration: 1 })
+    for (let i = 0; i < intersects.length; i++) {
+
+        gsap.to(gitHub.position, { y: 0.05, duration: 0.5 })
+        gsap.to(gitHubLight1, { intensity: 0.5, duration: 0.5 })
+        gsap.to(gitHubLight2, { intensity: 2, duration: 0.5 })
+        //gsap.to(spotLight1, { intensity: 0.5, duration: 0.5 })
+        document.body.style.cursor = "pointer";
+        //gitHub.position.y = -0.05
+        console.log("intersect!")
+
+        return "interact"
+
     }
 
     for (const object of objs) {
-        if (!intersects.find(intersect => intersect.object === object)) {
-            gsap.to(object.position, { y: 0.12, duration: 1 })
+        //console.log(!intersects.find(intersect => intersect.object === object))
+        if (!intersects.find(intersect => intersect.object != object)) {
+            gsap.to(gitHub.position, { y: 0.02, duration: 0.5 })
+            gsap.to(gitHubLight1, { intensity: 0, duration: 0.5 })
+            gsap.to(gitHubLight2, { intensity: 0, duration: 0.5 })
+            //gsap.to(spotLight1, { intensity: 1.3, duration: 0.5 })
+            document.body.style.cursor = "default";
             // tl1.restart()
+            //gitHub.position.y = -0.065
+            console.log("None")
         }
     }
     
@@ -216,13 +243,16 @@ function render() {
 
 window.addEventListener('mousemove', onMouseMove, false);
 
-console.log(render())
+window.requestAnimationFrame(render);
 
-function iAmConfusion() {
-
+function openWebsite() {
+    var object = render()
+    if (object == "interact") {
+        window.open("https://github.com/isaiah-gordon")
+    }
 }
 
-window.requestAnimationFrame(render);
+window.addEventListener('click', openWebsite);
 
 
 // document.addEventListener('mousemove', onDocumentMouseMove)
