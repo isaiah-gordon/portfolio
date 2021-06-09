@@ -41,7 +41,7 @@ window.addEventListener('resize', () => {
 })
 
 // Camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.2, 10)
 camera.position.set(0.14, 0.65, 0);
 camera.rotation.set(-0.66, 0, 0)
 camera.zoom = 0.7
@@ -85,13 +85,13 @@ dot_texture.repeat.set(200, 200);
 
 const floor_plane = new THREE.PlaneGeometry(30.0, 30.0, 1, 1)
 
-const floor_material = new THREE.MeshStandardMaterial({ map: dot_texture, side: THREE.DoubleSide });
+const floor_material = new THREE.MeshStandardMaterial({ map: dot_texture  });
 floor_material.roughness = 0.8
 
 const floor = new THREE.Mesh(floor_plane, floor_material)
 scene.add(floor)
 
-floor.rotation.x = 1.5708
+floor.rotation.x = 4.71239
 
 // = = = = = = MY THREE MODULE = = = = = =
 // Using my module to build some stuff!
@@ -101,7 +101,7 @@ const create = new Builder.Create(scene)
 const addAsset = new Assets.Create(scene)
 
 // TOP OF PAGE
-const spotLight1 = new create.spotLight(0.06, 1, 0xd0caf7, [3.54, 8, 7.4], [0.1, 0.01, -0.9])
+const spotLight1 = new create.spotLight(0.06, 1.5, 0xd0caf7, [3.54, 8, 7.4], [0.1, 0.01, -0.9])
 scene.add(spotLight1)
 load.text("ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.47, 0.11, -1], [-0.26, 0, 0])
 load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.29, 0, 0])
@@ -169,7 +169,7 @@ load.text("COMING SOON", 0.1, 0xf2f2f2, 0.02, [-0.22, 0.01, 4], [0, 0.3, 0])
 document.addEventListener('scroll', () => {
     // console.log(window.scrollY)
     if (window.scrollY < 700) {
-        gsap.to(spotLight1, { intensity: 1.22, duration: 1 })
+        gsap.to(spotLight1, { intensity: 1.5, duration: 1 })
         gsap.to(spotLight2, { intensity: 0, duration: 1 })
     }
     if (window.scrollY > 700) {

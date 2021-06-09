@@ -60,9 +60,6 @@ class Load {
         const scene_arg = this.scene_arg
         const gltfLoader = new GLTFLoader()
 
-        //var modelGroup = new THREE.Group()
-        //scene_arg.add(modelGroup)
-
         var modelGroup = new THREE.Object3D()
         scene_arg.add(modelGroup)
 
@@ -140,7 +137,7 @@ class Create {
     spotLight(size, intensity, color, position, targetPosition) {
         var spotLight = new THREE.SpotLight(color, intensity)
         spotLight.position.set(...position)
-        spotLight.penumbra = 0.18
+        //spotLight.penumbra = 0
 
         spotLight.target.position.set(...targetPosition);
         spotLight.target.updateMatrixWorld();
