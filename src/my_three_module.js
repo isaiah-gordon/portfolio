@@ -134,15 +134,12 @@ class Create {
         return pointLight
     }
 
-    spotLight(size, intensity, color, position, targetPosition) {
+    spotLight(intensity, color, position, targetPosition) {
         var spotLight = new THREE.SpotLight(color, intensity)
         spotLight.position.set(...position)
-        //spotLight.penumbra = 0
 
         spotLight.target.position.set(...targetPosition);
         spotLight.target.updateMatrixWorld();
-
-        spotLight.angle = size
 
         return spotLight
     }

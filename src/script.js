@@ -101,19 +101,20 @@ const create = new Builder.Create(scene)
 const addAsset = new Assets.Create(scene)
 
 // TOP OF PAGE
-const spotLight1 = new create.spotLight(0.06, 1.5, 0xd0caf7, [3.54, 8, 7.4], [0.1, 0.01, -0.9])
+const spotLight1 = new create.spotLight(1, 0xd0caf7, [0.1, 0.57, -0.81], [0.1, 0.01, -0.9])
 scene.add(spotLight1)
+debug.light(spotLight1, 'Spot Light 1')
 load.text("ISAIAH GORDON", 0.11, 0xf2f2f2, 0.03, [-0.47, 0.11, -1], [-0.26, 0, 0])
 load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.29, 0, 0])
 
 
 
 // FLOOR BOARD SECTION
-const spotLight2 = new create.spotLight(0.3, 1.4, 0xffaea3, [0.35, 2.65, 2.9], [0.2, 0.01, 1.3])
+const spotLight2 = new create.spotLight(1, 0xffaea3, [0.19, 0.72, 1.31], [0.2, 0.01, 1.3])
 scene.add(spotLight2)
 debug.light(spotLight2, 'Spot Light')
 
-const spotLight2B = new create.spotLight(0.3, 0.6, 0xffcbcb, [-1.75, 0.89, 2.9], [-0.2, 0.01, 1.6])
+const spotLight2B = new create.spotLight(0.2, 0xffcbcb, [-0.34, 0.54, 1.7], [-0.2, 0.01, 1.6])
 scene.add(spotLight2B)
 debug.light(spotLight2B, 'Spot Light B')
 
@@ -123,7 +124,7 @@ load.text("Floor Board", 0.08, 0xE73E43, 0.006, [-0.4, 0, 0.82], [-1.5708, 0, 0]
 
 // Bill Board
 load.model("models/section_art/floor_board/fb_bill_board_image.gltf", [0.53, 0.18, 0.8], [0, -0.44, 0], [0.3, 0.3, 0.3])
-const billBoardLight = new create.spotLight(0.2, 1.4, 0xffaea3, [0.19, -0.69, 1.84], [0.53, 0.18, 0.8])
+const billBoardLight = new create.spotLight(1.4, 0xffaea3, [0.19, -0.69, 1.84], [0.53, 0.18, 0.8])
 scene.add(billBoardLight)
 
 // Description 1
@@ -169,12 +170,12 @@ load.text("COMING SOON", 0.1, 0xf2f2f2, 0.02, [-0.22, 0.01, 4], [0, 0.3, 0])
 document.addEventListener('scroll', () => {
     // console.log(window.scrollY)
     if (window.scrollY < 700) {
-        gsap.to(spotLight1, { intensity: 1.5, duration: 1 })
+        gsap.to(spotLight1, { intensity: 1, duration: 1 })
         gsap.to(spotLight2, { intensity: 0, duration: 1 })
     }
     if (window.scrollY > 700) {
         gsap.to(spotLight1, { intensity: 0, duration: 1 })
-        gsap.to(spotLight2, { intensity: 1.5, duration: 1 })
+        gsap.to(spotLight2, { intensity: 1, duration: 1 })
     }
 })
 
