@@ -27,7 +27,7 @@ class Create {
         //this.create = new Builder.Create(scene_arg)
     }
 
-    button(name, mouse, camera, position) {
+    button(name, link_source, position, mouse, camera) {
 
         function pathToKey(key) {
             return getJSONPath('buttons.' + name + '.' + key)
@@ -36,10 +36,11 @@ class Create {
         const load = new Builder.Load(this.scene_arg)
         const create = new Builder.Create(this.scene_arg)
 
-        var BUTTON_MODEL = load.model(pathToKey('model_source'), position, [0, 0, 0], [0.7, 0.7, 0.7])
+        var scale = pathToKey('model_scale')
+        var BUTTON_MODEL = load.model(pathToKey('model_source'), position, [0, 0, 0], [scale, scale, scale])
 
-        var TOP_LIGHT_Y = position[1] + 0.01
-        var BOTTOM_LIGHT_Y = position[1] + 0.09
+        var TOP_LIGHT_Y = position[1] + 0.09
+        var BOTTOM_LIGHT_Y = position[1] - 0.02
 
         var BUTTON_TOP_LIGHT = create.pointLight(0, pathToKey('top_light_color'), [position[0], TOP_LIGHT_Y, position[2]])
         var BUTTON_BOTTOM_LIGHT = create.pointLight(0, pathToKey('bottom_light_color'), [position[0], BOTTOM_LIGHT_Y, position[2]])
@@ -60,7 +61,7 @@ class Create {
             for (let i = 0; i < intersects.length; i++) {
 
                 gsap.to(BUTTON_MODEL.position, { y: BUTTON_ANIMATION_Y, duration: 0.5 })
-                gsap.to(BUTTON_TOP_LIGHT, { intensity: 2, duration: 0.5 })
+                gsap.to(BUTTON_TOP_LIGHT, { intensity: 0.5, duration: 0.5 })
                 gsap.to(BUTTON_BOTTOM_LIGHT, { intensity: 0.5, duration: 0.5 })
                 document.body.style.cursor = "pointer";
 
@@ -81,7 +82,7 @@ class Create {
         function openWebsite() {
             var object = render()
             if (object == name) {
-                window.open(pathToKey('link_source'))
+                window.open(link_source)
             }
         }
 

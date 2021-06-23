@@ -15,13 +15,13 @@ class Debug {
 
         var object_debug = this.debug_gui.addFolder(folderName)
 
-        object_debug.add(obj.position, 'x').min(-2).max(2).name("<b>X Position</b> &#x1F697")
-        object_debug.add(obj.position, 'y').min(-2).max(2).name("<b>Y Position</b> &#x1F446")
-        object_debug.add(obj.position, 'z').min(-2).max(2).name("<b>Z Position</b> &#x1F698")
+        object_debug.add(obj.position, 'x').min(-2).max(4).name("<b>X Position</b> &#x1F697")
+        object_debug.add(obj.position, 'y').min(-2).max(4).name("<b>Y Position</b> &#x1F446")
+        object_debug.add(obj.position, 'z').min(-2).max(4).name("<b>Z Position</b> &#x1F698")
 
-        object_debug.add(obj.rotation, 'x').min(-2).max(2).step(0.01).name("X Rotation")
-        object_debug.add(obj.rotation, 'y').min(-2).max(2).step(0.01).name("Y Rotation")
-        object_debug.add(obj.rotation, 'z').min(-2).max(2).step(0.01).name("Z Rotation")
+        object_debug.add(obj.rotation, 'x').min(-2).max(4).step(0.01).name("X Rotation")
+        object_debug.add(obj.rotation, 'y').min(-2).max(4).step(0.01).name("Y Rotation")
+        object_debug.add(obj.rotation, 'z').min(-2).max(4).step(0.01).name("Z Rotation")
     }
 
 

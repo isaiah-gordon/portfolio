@@ -13,6 +13,20 @@
       "model_scale": 0.7,
       "top_light_color": "#0071eb",
       "bottom_light_color": "#0071eb"
+    },
+    "code": {
+      "link_source": "https://github.com/isaiah-gordon",
+      "model_source": "models/buttons/code_button.gltf",
+      "model_scale": 0.6,
+      "top_light_color": "#dbdbdb",
+      "bottom_light_color": "#1515d6"
+    },
+    "images": {
+      "link_source": "https://dotops.app/",
+      "model_source": "models/buttons/images_button.gltf",
+      "model_scale": 0.6,
+      "top_light_color": "#dbdbdb",
+      "bottom_light_color": "#16c91c"
     }
   }
 }
