@@ -20,8 +20,9 @@ function getJSONPath(path) {
 }
 
 class Create {
-    constructor(scene_arg) {
+    constructor(scene_arg, loader_arg) {
         this.scene_arg = scene_arg
+        this.loader_arg = loader_arg
 
         //this.load = new Builder.Load(scene_arg)
         //this.create = new Builder.Create(scene_arg)
@@ -33,7 +34,7 @@ class Create {
             return getJSONPath('buttons.' + name + '.' + key)
         }
 
-        const load = new Builder.Load(this.scene_arg)
+        const load = new Builder.Load(this.scene_arg, this.loader_arg)
         const create = new Builder.Create(this.scene_arg)
 
         var scale = pathToKey('model_scale')

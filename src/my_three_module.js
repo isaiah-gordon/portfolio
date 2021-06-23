@@ -50,15 +50,19 @@ class Debug {
 
 
 class Load {
-    constructor(scene_arg, debug_gui) {
+    constructor(scene_arg, loader, debug_gui) {
         this.scene_arg = scene_arg
+        this.loader = loader
         this.debug_gui = debug_gui
+        console.log(loader)
     }
 
     model(source, position, rotation, scale) {
 
         const scene_arg = this.scene_arg
-        const gltfLoader = new GLTFLoader()
+        const loader = this.loader
+        //const gltfLoader = new GLTFLoader()
+        const gltfLoader = loader
 
         var modelGroup = new THREE.Object3D()
         scene_arg.add(modelGroup)

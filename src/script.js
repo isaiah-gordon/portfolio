@@ -12,6 +12,43 @@ import * as Builder from './my_three_module.js'
 import * as Assets from './dynamic_assets.js'
 
 
+const loadingManager = new THREE.LoadingManager(() => {
+
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.classList.add('fade-out');
+
+    // optional: remove loader from DOM via event listener
+    loadingScreen.addEventListener('transitionend', onTransitionEnd);
+
+});
+
+loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
+
+    console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+
+};
+
+loadingManager.onLoad = function () {
+
+    console.log('Loading complete!');
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.classList.add('fade-out');
+
+    const scrollsection = document.getElementById('scroll-section');
+    scrollsection.classList.add('loaded-height');
+
+};
+
+loadingManager.onError = function (url) {
+
+    console.log('There was an error loading ' + url);
+
+};
+
+const gltf_loader = new GLTFLoader(loadingManager )
+// var gltf_loader = 1
+
+
 // Debug
 const gui = new dat.GUI()
 
@@ -100,9 +137,9 @@ floor.rotation.x = 4.71239
 // = = = = = = MY THREE MODULE = = = = = =
 // Using my module to build some stuff!
 
-const load = new Builder.Load(scene, gui)
+const load = new Builder.Load(scene, gltf_loader, gui)
 const create = new Builder.Create(scene)
-const addAsset = new Assets.Create(scene)
+const addAsset = new Assets.Create(scene, gltf_loader)
 
 // TOP OF PAGE
 const spotLight1 = new create.spotLight(0.7, 0xd0caf7, [0.1, 0.57, -0.81], [0.1, 0.01, -0.9])
