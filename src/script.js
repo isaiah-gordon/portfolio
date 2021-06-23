@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as dat from 'dat.gui'
+import * as Stats from 'stats.js'
 
 import gsap from 'gsap'
 
@@ -11,46 +12,38 @@ import gsap from 'gsap'
 import * as Builder from './my_three_module.js'
 import * as Assets from './dynamic_assets.js'
 
-
+// Loading Manager
 const loadingManager = new THREE.LoadingManager(() => {
-
     const loadingScreen = document.getElementById('loading-screen');
     loadingScreen.classList.add('fade-out');
-
-    // optional: remove loader from DOM via event listener
     loadingScreen.addEventListener('transitionend', onTransitionEnd);
-
 });
 
 loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
-
     console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
-
 };
 
 loadingManager.onLoad = function () {
-
     console.log('Loading complete!');
     const loadingScreen = document.getElementById('loading-screen');
     loadingScreen.classList.add('fade-out');
-
     const scrollsection = document.getElementById('scroll-section');
     scrollsection.classList.add('loaded-height');
-
 };
 
 loadingManager.onError = function (url) {
-
     console.log('There was an error loading ' + url);
-
 };
 
 const gltf_loader = new GLTFLoader(loadingManager )
-// var gltf_loader = 1
 
 
 // Debug
 const gui = new dat.GUI()
+
+var stats = new Stats();
+stats.showPanel(1);
+document.body.appendChild( stats.dom )
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -256,17 +249,17 @@ load.text("COMING SOON", 0.1, 0xf2f2f2, 0.02, [-0.22, 0.01, 5], [0, 0.3, 0])
 // Spotlight Transitions
 document.addEventListener('scroll', () => {
     // console.log(window.scrollY)
-    if (window.scrollY > 2300) {
+    if (window.scrollY > 1400) {
         gsap.to(spotLight1, { intensity: 0, duration: 1 })
         gsap.to(spotLight2, { intensity: 0, duration: 1 })
         gsap.to(spotLight3, { intensity: 1.5, duration: 1 })
     }
-    else if (window.scrollY > 700) {
+    else if (window.scrollY > 400) {
         gsap.to(spotLight1, { intensity: 0, duration: 1 })
         gsap.to(spotLight2, { intensity: 1.5, duration: 1 })
         gsap.to(spotLight3, { intensity: 0, duration: 1 })
     }
-    else if (window.scrollY < 700) {
+    else if (window.scrollY < 400) {
         gsap.to(spotLight1, { intensity: 1, duration: 1 })
         gsap.to(spotLight2, { intensity: 0, duration: 1 })
         gsap.to(spotLight3, { intensity: 0, duration: 1 })
@@ -311,7 +304,7 @@ const render_images_button2 = addAsset.button('images', 'https://dotops.app/', [
 
 const updateCamera = (event) => {
     // console.log(window.scrollY)
-    camera.position.z = window.scrollY * .0012
+    camera.position.z = window.scrollY * .002
 }
 
 window.addEventListener('scroll', updateCamera)
@@ -321,6 +314,8 @@ const clock = new THREE.Clock()
 
 // = = = = = Animation Loop = = = = =
 const tick = () => {
+
+    stats.begin()
 
     //render()
     document.body.style.cursor = "default";
@@ -339,6 +334,8 @@ const tick = () => {
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
+
+    stats.end()
 
 }
 

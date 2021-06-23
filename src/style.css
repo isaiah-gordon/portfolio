@@ -15,8 +15,8 @@ body {
     background-color: black;
 }
 
-.webgl
-{
+.webgl {
+    z-index: -1;
     position: fixed;
     top: 0;
     left: 0;
@@ -27,8 +27,7 @@ body {
 .container {
     height: 100vh;
     display: grid;
-    place-items: center;
-    
+    place-items: center;  
 }
 
 h1 {
@@ -45,12 +44,61 @@ h1 {
         height: 1000vh
     }
 
-/* Loading Screen */
 
+
+/* MODAL */
+#modalBtn {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+
+/* LOADING SCREEN */
 #loading-screen {
     position: absolute;
+    z-index: -1;
     top: 0;
     left: 0;
+    z-index: 1;
     background: #1c1c1c;
     display: flex;
     width: 100vw;
