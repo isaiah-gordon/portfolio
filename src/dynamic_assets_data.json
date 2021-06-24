@@ -3,14 +3,14 @@
     "github": {
       "link_source": "https://github.com/isaiah-gordon",
       "model_source": "models/buttons/github_button.gltf",
-      "model_scale": 0.7,
+      "model_scale": 0.9,
       "top_light_color": "#5a0075",
       "bottom_light_color": "#5a0075"
     },
     "linkedin": {
       "link_source": "https://linkedin.com/in/isaia",
       "model_source": "models/buttons/linkedin_button.gltf",
-      "model_scale": 0.7,
+      "model_scale": 0.9,
       "top_light_color": "#0071eb",
       "bottom_light_color": "#0071eb"
     },

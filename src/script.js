@@ -102,13 +102,11 @@ debug.object(camera, "Camera")
 
 // Sky Light
 // (The sun is a deadly lazer!)
-//const hemLight = new THREE.HemisphereLight(0xbbddff, 0x080820, 0.1);
-//scene.add(hemLight);
 
-//const directionalLight = new THREE.DirectionalLight(0xffffff, 0.2);
-//scene.add(directionalLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+scene.add(directionalLight);
 
-const ambient_light = new THREE.AmbientLight(0xffffff, 0.7)
+const ambient_light = new THREE.AmbientLight(0xffffff, 1)
 scene.add(ambient_light)
 
 // Scene Floor
@@ -136,22 +134,12 @@ const create = new Builder.Create(scene)
 const addAsset = new Assets.Create(scene, gltf_loader)
 
 // TOP OF PAGE
-const spotLight1 = new create.spotLight(0.7, 0xd0caf7, [0.1, 0.57, -0.81], [0.1, 0.01, -0.9])
-scene.add(spotLight1)
-//debug.light(spotLight1, 'Spot Light 1')
-load.text("ISAIAH GORDON", 0.11, 0xa8a8a8, 0.03, [-0.47, 0.11, -1], [-0.26, 0, 0])
-load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.29, 0, 0])
+load.text("ISAIAH GORDON", 0.11, 0xa8a8a8, 0.03, [-0.47, 0.11, -1], [-0.4, 0, 0])
+load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.4, 0, 0])
 
 
 
 // FLOOR BOARD SECTION
-const spotLight2 = new create.spotLight(0, 0xffaea3, [-0.03, 0.64, 1.35], [0, 0.01, 1.3])
-scene.add(spotLight2)
-//debug.light(spotLight2, 'Spot Light')
-
-//const spotLight2B = new create.spotLight(0, 0xffcbcb, [0.6, 0.54, 1.9], [0.5, 0.06, 1.7])
-//scene.add(spotLight2B)
-//debug.light(spotLight2B, 'Spot Light B')
 
 // Titles
 load.text("PROJECTS", 0.1, 0xa8a8a8, 0.02, [-0.525, 0.01, 0.535], [0, 0.36, 0])
@@ -197,11 +185,9 @@ load.text('certain product is being sold.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.
 
 // French Fries
 var fries = load.model("models/section_art/floor_board/fry_group.gltf", [0.44, 0.06, 1.7], [0, 0, 0], [0.7, 0.7, 0.7])
-//debug.object(fries, "French Fries")
 
 // Data Chart
 var bars = load.model("models/section_art/floor_board/graph_bars.gltf", [0.62, 0.06, 1.6], [0, 0, 0], [0.6, 0.6, 0.6])
-//debug.object(bars, "Bars")
 
 // Description 3
 //var description3 = `
@@ -221,9 +207,6 @@ load.text("see how much their team upsells.", 0.03, 0x878787, 0, [-0.394, 0.001,
 
 
 // DOTOPS SECTION
-const spotLight3 = new create.spotLight(0, 0x749dff, [0.03, 0.54, 2.98], [0.04, 0.41, 3])
-scene.add(spotLight3)
-debug.light(spotLight3, 'Spot Light')
 
 // Titles
 load.text("Dotops API", 0.08, 0x4D54E7, 0.006, [-0.4, 0, 2.7], [-1.5708, 0, 0], "title")
@@ -262,32 +245,11 @@ debug.object(laptop, "Laptop")
 
 // Description 3
 load.text("It includes automated email reports", 0.03, 0x878787, 0, [-0.394, 0.001, 3.53], [-1.571, 0, 0])
-load.text("that shows retail performance. It has", 0.03, 0x878787, 0, [-0.394, 0.001, 3.59], [-1.571, 0, 0])
+load.text("that show retail performance. It has", 0.03, 0x878787, 0, [-0.394, 0.001, 3.59], [-1.571, 0, 0])
 load.text("motivated restraunt teams to upsell", 0.03, 0x878787, 0, [-0.394, 0.001, 3.65], [-1.571, 0, 0])
 load.text("products and drive new promotions.", 0.03, 0x878787, 0, [-0.394, 0.001, 3.71], [-1.571, 0, 0])
 
 load.text("COMING SOON", 0.1, 0xf2f2f2, 0.02, [-0.22, 0.01, 5], [0, 0.3, 0])
-
-
-// Spotlight Transitions
-document.addEventListener('scroll', () => {
-    // console.log(window.scrollY)
-    if (window.scrollY > 1400) {
-        gsap.to(spotLight1, { intensity: 0, duration: 1 })
-        gsap.to(spotLight2, { intensity: 0, duration: 1 })
-        gsap.to(spotLight3, { intensity: 1.5, duration: 1 })
-    }
-    else if (window.scrollY > 400) {
-        gsap.to(spotLight1, { intensity: 0, duration: 1 })
-        gsap.to(spotLight2, { intensity: 1.5, duration: 1 })
-        gsap.to(spotLight3, { intensity: 0, duration: 1 })
-    }
-    else if (window.scrollY < 400) {
-        gsap.to(spotLight1, { intensity: 1, duration: 1 })
-        gsap.to(spotLight2, { intensity: 0, duration: 1 })
-        gsap.to(spotLight3, { intensity: 0, duration: 1 })
-    }
-})
 
 
 // Renderer
@@ -297,7 +259,7 @@ const renderer = new THREE.WebGLRenderer({
     alpha: true
 })
 renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1))
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.2))
 
 
 // = = = = = = = = = = = ANIMATIONS = = = = = = = = = = = = = = =
@@ -315,8 +277,8 @@ function onMouseMove(event) {
 window.addEventListener('mousemove', onMouseMove, false);
 
 // Setup Buttons
-const render_github_button = addAsset.button('github', 'https://github.com/isaiah-gordon', [0.54, 0.02, -0.7], mouse, camera)
-const render_linkedin_button = addAsset.button('linkedin', 'https://linkedin.com/in/isaia', [0.3, 0.03, -0.7], mouse, camera)
+const render_github_button = addAsset.button('github', 'https://github.com/isaiah-gordon', [0.5, 0.02, -0.6], mouse, camera)
+const render_linkedin_button = addAsset.button('linkedin', 'https://linkedin.com/in/isaia', [0.2, 0.03, -0.6], mouse, camera)
 
 const render_code_button1 = addAsset.button('code', 'https://github.com/isaiah-gordon/floor-board', [-0.1, 0.03, 2.05], mouse, camera)
 const render_images_button = addAsset.button('images', 'https://dotops.app/', [0.35, 0.03, 2.05], mouse, camera)
