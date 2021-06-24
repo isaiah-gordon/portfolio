@@ -25,10 +25,15 @@ loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
 
 loadingManager.onLoad = function () {
     console.log('Loading complete!');
+
     const loadingScreen = document.getElementById('loading-screen');
     loadingScreen.classList.add('fade-out');
+
     const scrollsection = document.getElementById('scroll-section');
     scrollsection.classList.add('loaded-height');
+
+    console.log("Polycount:", renderer.info.render.triangles)
+    console.log("Drawcalls:", renderer.info.render.calls)
 };
 
 loadingManager.onError = function (url) {
@@ -87,11 +92,6 @@ if (innerWidth < 1000) {
     camera.zoom = 0.35
     camera.fov = 45
 }
-
-window.addEventListener('resize', function () {
-    "use strict";
-    window.location.reload();
-});
 
 camera.updateProjectionMatrix();
 scene.add(camera)
@@ -162,7 +162,7 @@ const billBoardLight = new create.spotLight(1.4, 0xffaea3, [0.19, -0.69, 1.84], 
 scene.add(billBoardLight)
 
 // Description 1
-load.text("Software that allows McDonald's teams", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.9], [-1.571, 0, 0])
+load.text("software that allows mcdonald's teams", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.9], [-1.571, 0, 0])
 load.text("to visulize sales data in real time!", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.97], [-1.571, 0, 0])
 
 // McD Store
@@ -174,12 +174,25 @@ var mcdSign = load.model("models/section_art/floor_board/mcd_sign.gltf", [-0.44,
 //debug.object(mcdSign, "Sign")
 
 // Description 2
+//var description2 = `
+//    Currently being tested at a
+//    few locations, my software is
+//    displayed on a board located
+//    "on the floor" where staff can
+//    see. It shows how much of a
+//    certain product is being sold.
+//`;
+
+//load.text(description2, 0.03, 0x878787, 0, [-0.04, 0.001, 1], [-1.571, 0, 0])
+
+// Description 2
 load.text("Currently being tested at a", 0.03, 0x878787, 0, [-0.04, 0.001, 1.15], [-1.571, 0, 0])
 load.text("few locations, my software is", 0.03, 0x878787, 0, [-0.04, 0.001, 1.21], [-1.571, 0, 0])
 load.text("displayed on a board located", 0.03, 0x878787, 0, [-0.04, 0.001, 1.27], [-1.571, 0, 0])
 load.text('"on the floor" where staff can', 0.03, 0x878787, 0, [-0.04, 0.001, 1.33], [-1.571, 0, 0])
 load.text('see. It shows how much of a', 0.03, 0x878787, 0, [-0.04, 0.001, 1.39], [-1.571, 0, 0])
 load.text('certain product is being sold.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.45], [-1.571, 0, 0])
+
 
 // French Fries
 var fries = load.model("models/section_art/floor_board/fry_group.gltf", [0.44, 0.06, 1.7], [0, 0, 0], [0.7, 0.7, 0.7])
@@ -190,6 +203,15 @@ var bars = load.model("models/section_art/floor_board/graph_bars.gltf", [0.62, 0
 //debug.object(bars, "Bars")
 
 // Description 3
+//var description3 = `
+//    The locations that use my
+//    software have a higher average
+//    check because managers can
+//    see how much their team upsells.
+//`;
+
+//load.text(description3, 0.03, 0x878787, 0, [-0.394, 0.001, 1.45], [-1.571, 0, 0])
+
 load.text("The locations that use my", 0.03, 0x878787, 0, [-0.394, 0.001, 1.6], [-1.571, 0, 0])
 load.text("software have a higher average", 0.03, 0x878787, 0, [-0.394, 0.001, 1.66], [-1.571, 0, 0])
 load.text("check because managers can", 0.03, 0x878787, 0, [-0.394, 0.001, 1.72], [-1.571, 0, 0])
@@ -274,7 +296,7 @@ const renderer = new THREE.WebGLRenderer({
     alpha: true
 })
 renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1))
 
 
 // = = = = = = = = = = = ANIMATIONS = = = = = = = = = = = = = = =
@@ -295,8 +317,8 @@ window.addEventListener('mousemove', onMouseMove, false);
 const render_github_button = addAsset.button('github', 'https://github.com/isaiah-gordon', [0.54, 0.02, -0.7], mouse, camera)
 const render_linkedin_button = addAsset.button('linkedin', 'https://linkedin.com/in/isaia', [0.3, 0.03, -0.7], mouse, camera)
 
-const render_code_button1 = addAsset.button('code', 'https://github.com/isaiah-gordon/floor-board', [-0.1, 0.03, 1.97], mouse, camera)
-const render_images_button = addAsset.button('images', 'https://dotops.app/', [0.35, 0.03, 1.97], mouse, camera)
+const render_code_button1 = addAsset.button('code', 'https://github.com/isaiah-gordon/floor-board', [-0.1, 0.03, 2.05], mouse, camera)
+const render_images_button = addAsset.button('images', 'https://dotops.app/', [0.35, 0.03, 2.05], mouse, camera)
 
 const render_code_button2 = addAsset.button('code', 'https://github.com/isaiah-gordon/dotops', [-0.1, 0.03, 4], mouse, camera)
 const render_images_button2 = addAsset.button('images', 'https://dotops.app/', [0.35, 0.03, 4], mouse, camera)
@@ -310,7 +332,6 @@ const updateCamera = (event) => {
 window.addEventListener('scroll', updateCamera)
 
 const clock = new THREE.Clock()
-
 
 // = = = = = Animation Loop = = = = =
 const tick = () => {
