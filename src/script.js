@@ -287,7 +287,7 @@ const render_code_button1 = addAsset.button('code', [-0.1, 0.03, 2.05], mouse, c
 const render_images_button = addAsset.button('images', [0.35, 0.03, 2.05], mouse, camera, false, modal.images)
 
 const render_code_button2 = addAsset.button('code', [-0.1, 0.03, 4], mouse, camera, 'https://github.com/isaiah-gordon/dotops')
-const render_images_button2 = addAsset.button('images', [0.35, 0.03, 4], mouse, camera, false, modal.images)
+const render_images_button2 = addAsset.button('video', [0.35, 0.03, 4], mouse, camera, false, modal.video)
 
 
 const updateCamera = (event) => {

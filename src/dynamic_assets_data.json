@@ -27,6 +27,13 @@
       "model_scale": 0.6,
       "top_light_color": "#dbdbdb",
       "bottom_light_color": "#16c91c"
+    },
+    "video": {
+      "link_source": "https://dotops.app/",
+      "model_source": "models/buttons/video_button.gltf",
+      "model_scale": 0.6,
+      "top_light_color": "#dbdbdb",
+      "bottom_light_color": "#16c91c"
     }
   }
 }

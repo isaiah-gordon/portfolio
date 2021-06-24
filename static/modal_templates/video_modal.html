@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<style>
+		.text {
+			color: #f2f2f2;
+            font-size: 3vw;
+            font-family: Poppins;
+            padding: 8px 12px;
+            position: relative;
+            bottom: -8px;
+            text-align: center;
+		}
+	</style>
+</head>
+
+<body onload="playVid()"> 
+
+<video id="video" width="100%" controls>
+  <source src="./video.mp4" type="video/mp4">
+  Your browser does not support HTML video.
+</video>
+
+<p class="text">I wanted to connect more stores to the Dotops API. <br> So I created this explanation video for franchisees.</p>
+
+<script> 
+	var vid = document.getElementById("video"); 
+
+	function playVid() { 
+		vid.play(); 
+	} 
+</script> 
+
+</body> 
+</html>
