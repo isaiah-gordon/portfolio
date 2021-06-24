@@ -1,6 +1,5 @@
 import './style.css'
 import * as THREE from 'three'
-// import { Scene, PerspectiveCamera, HemisphereLight, DirectionalLight, TextureLoader, RepeatWrapping, PlaneGeometry, MeshStandardMaterial, Mesh, WebGLRenderer, Raycaster, Vector2, Clock } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as dat from 'dat.gui'
@@ -11,6 +10,7 @@ import gsap from 'gsap'
 // Import my modules.
 import * as Builder from './my_three_module.js'
 import * as Assets from './dynamic_assets.js'
+import * as Modal from './modal.js'
 
 // Loading Manager
 const loadingManager = new THREE.LoadingManager(() => {
@@ -45,6 +45,7 @@ const gltf_loader = new GLTFLoader(loadingManager )
 
 // Debug
 const gui = new dat.GUI()
+dat.GUI.toggleHide();
 
 var stats = new Stats();
 stats.showPanel(1);
@@ -99,6 +100,8 @@ scene.add(camera)
 const debug = new Builder.Debug(gui)
 debug.object(camera, "Camera")
 
+
+const modal = new Modal.Open
 
 // Sky Light
 // (The sun is a deadly lazer!)
@@ -277,14 +280,14 @@ function onMouseMove(event) {
 window.addEventListener('mousemove', onMouseMove, false);
 
 // Setup Buttons
-const render_github_button = addAsset.button('github', 'https://github.com/isaiah-gordon', [0.5, 0.02, -0.6], mouse, camera)
-const render_linkedin_button = addAsset.button('linkedin', 'https://linkedin.com/in/isaia', [0.2, 0.03, -0.6], mouse, camera)
+const render_github_button = addAsset.button('github', [0.5, 0.02, -0.6], mouse, camera, 'https://github.com/isaiah-gordon')
+const render_linkedin_button = addAsset.button('linkedin', [0.2, 0.03, -0.6], mouse, camera, 'https://linkedin.com/in/isaia')
 
-const render_code_button1 = addAsset.button('code', 'https://github.com/isaiah-gordon/floor-board', [-0.1, 0.03, 2.05], mouse, camera)
-const render_images_button = addAsset.button('images', 'https://dotops.app/', [0.35, 0.03, 2.05], mouse, camera)
+const render_code_button1 = addAsset.button('code', [-0.1, 0.03, 2.05], mouse, camera, 'https://github.com/isaiah-gordon/floor-board')
+const render_images_button = addAsset.button('images', [0.35, 0.03, 2.05], mouse, camera, false, modal.images)
 
-const render_code_button2 = addAsset.button('code', 'https://github.com/isaiah-gordon/dotops', [-0.1, 0.03, 4], mouse, camera)
-const render_images_button2 = addAsset.button('images', 'https://dotops.app/', [0.35, 0.03, 4], mouse, camera)
+const render_code_button2 = addAsset.button('code', [-0.1, 0.03, 4], mouse, camera, 'https://github.com/isaiah-gordon/dotops')
+const render_images_button2 = addAsset.button('images', [0.35, 0.03, 4], mouse, camera, false, modal.images)
 
 
 const updateCamera = (event) => {

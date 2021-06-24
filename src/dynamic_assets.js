@@ -28,7 +28,7 @@ class Create {
         //this.create = new Builder.Create(scene_arg)
     }
 
-    button(name, link_source, position, mouse, camera) {
+    button(name, position, mouse, camera, link_source, callback) {
 
         function pathToKey(key) {
             return getJSONPath('buttons.' + name + '.' + key)
@@ -80,14 +80,19 @@ class Create {
 
         }
 
-        function openWebsite() {
+        function clickAction() {
             var object = render()
             if (object == name) {
-                window.open(link_source)
+                if (link_source != false) {
+                    window.open(link_source)
+                }
+                else if (callback) {
+                    callback()
+                }
             }
         }
 
-        window.addEventListener('click', openWebsite);
+        window.addEventListener('click', clickAction);
 
         return render;
         
