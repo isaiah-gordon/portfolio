@@ -87,10 +87,10 @@ camera.fov = 45
 // Mobile Responsive Camera Settings
 if (innerWidth < 1000) {
 
-    camera.position.set(0.14, 0.74, 0);
+    camera.position.set(0.14, 1.1, 0);
     camera.rotation.set(-1.1, 0, 0)
 
-    camera.zoom = 0.35
+    camera.zoom = 0.5
     camera.fov = 45
 }
 
@@ -145,7 +145,7 @@ load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0
 // FLOOR BOARD SECTION
 
 // Titles
-load.text("PROJECTS", 0.1, 0xa8a8a8, 0.02, [-0.525, 0.01, 0.535], [0, 0.36, 0])
+load.text("PROJECTS", 0.13, 0xa8a8a8, 0.02, [-0.525, 0.01, 0.535], [0, 0.36, 0])
 load.text("Floor Board", 0.08, 0xE73E43, 0.006, [-0.4, 0, 0.82], [-1.5708, 0, 0])
 
 // Bill Board
@@ -224,8 +224,7 @@ load.text("An API that gamifys sales targets", 0.037, 0xedeef0, 0, [-0.4, 0.001,
 load.text("allowing restraunt teams to compete.", 0.037, 0xedeef0, 0, [-0.4, 0.001, 2.86], [-1.571, 0, 0])
 
 // Server Racks
-var server_racks = load.model("models/section_art/dotops/server_racks.gltf", [-0.2, 0.11, 3.3], [0, 0, 0], [0.55, 0.55, 0.55])
-debug.object(server_racks, "Servers")
+load.model("models/section_art/dotops/server_racks.gltf", [-0.2, 0.11, 3.3], [0, 0, 0], [0.55, 0.55, 0.55])
 
 // McD Sign
 //var mcdSign = load.model("models/section_art/floor_board/mcd_sign.gltf", [-0.44, 0.135, 1.47], [0, 0.36, 0], [0.4, 0.4, 0.4])
@@ -240,7 +239,6 @@ load.text('data between stores in real time.', 0.03, 0x878787, 0, [-0.04, 0.001,
 
 // Laptop
 var laptop = load.model("models/section_art/dotops/laptop.gltf", [0.55, 0.01, 3.75], [0, 0, 0], [0.7, 0.7, 0.7])
-debug.object(laptop, "Laptop")
 
 // Data Chart
 //var bars = load.model("models/section_art/floor_board/graph_bars.gltf", [0.62, 0.06, 1.6], [0, 0, 0], [0.6, 0.6, 0.6])
@@ -252,8 +250,25 @@ load.text("that show retail performance. It has", 0.03, 0x878787, 0, [-0.394, 0.
 load.text("motivated restraunt teams to upsell", 0.03, 0x878787, 0, [-0.394, 0.001, 3.65], [-1.571, 0, 0])
 load.text("products and drive new promotions.", 0.03, 0x878787, 0, [-0.394, 0.001, 3.71], [-1.571, 0, 0])
 
-load.text("COMING SOON", 0.1, 0xf2f2f2, 0.02, [-0.22, 0.01, 5], [0, 0.3, 0])
 
+// SKILLS SECTION
+
+load.text("SKILLS", 0.15, 0xa8a8a8, 0.03, [0.24, 0.01, 4.7], [0, -0.4, 0], "skills")
+
+var python = load.model("models/section_art/skills/python.gltf", [-0.07, 0.18, 5], [0, 0.3, 0], [0.1, 0.1, 0.1])
+debug.object(python, "Python")
+
+var js = load.model("models/section_art/skills/javascript.gltf", [-0.2, 0.3, 5.45], [0, 0.54, 0], [0.04, 0.04, 0.04])
+debug.object(js, "JS")
+
+var html = load.model("models/section_art/skills/html-css.gltf", [-0.07, 0.18, 5.8], [0, 0.54, 0], [0.08, 0.08, 0.08])
+debug.object(html, "html")
+
+var cloud = load.model("models/section_art/skills/gcp.gltf", [0.42, 0.35, 5.8], [0, -0.68, 0], [0.06, 0.06, 0.06])
+debug.object(cloud, "GCP")
+
+var sql = load.model("models/section_art/skills/mysql.gltf", [0.3, 0.22, 6.2], [0, -0.19, 0], [0.08, 0.08, 0.08])
+debug.object(sql, "MySQL")
 
 // Renderer
  
