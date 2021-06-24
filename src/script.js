@@ -77,7 +77,7 @@ window.addEventListener('resize', () => {
 })
 
 // Camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.2, 10)
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.2, 3)
 camera.position.set(0.14, 0.65, 0); //Y 0.65
 camera.rotation.set(-0.75, 0, 0)
 camera.zoom = 0.7
@@ -115,9 +115,9 @@ scene.add(ambient_light)
 const dot_texture = new THREE.TextureLoader().load('textures/pixel_dot_background.png')
 dot_texture.wrapS = THREE.RepeatWrapping;
 dot_texture.wrapT = THREE.RepeatWrapping;
-dot_texture.repeat.set(200, 200);
+dot_texture.repeat.set(20, 40);
 
-const floor_plane = new THREE.PlaneGeometry(50.0, 50.0, 1, 1)
+const floor_plane = new THREE.PlaneGeometry(6.0, 14.0, 1, 1)
 
 const floor_material = new THREE.MeshStandardMaterial({ map: dot_texture  });
 floor_material.roughness = 0.8
@@ -126,6 +126,7 @@ const floor = new THREE.Mesh(floor_plane, floor_material)
 scene.add(floor)
 
 floor.rotation.x = 4.71239
+floor.position.z = 3
 
 // = = = = = = MY THREE MODULE = = = = = =
 // Using my module to build some stuff!
