@@ -1,4 +1,3 @@
 node_modules
 /.vs
 /dist
-/static/modal_templates/video.mp4
