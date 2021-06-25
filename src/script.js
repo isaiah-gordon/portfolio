@@ -85,7 +85,7 @@ camera.zoom = 0.7
 camera.fov = 45
 
 // Mobile Responsive Camera Settings
-if (innerWidth < 1000) {
+if (innerWidth < 1050) {
 
     camera.position.set(0.14, 1.1, 0);
     camera.rotation.set(-1.1, 0, 0)
@@ -150,8 +150,8 @@ load.text("Floor Board", 0.08, 0xE73E43, 0.006, [-0.4, 0, 0.82], [-1.5708, 0, 0]
 
 // Bill Board
 load.model("models/section_art/floor_board/fb_bill_board_image.gltf", [0.53, 0.18, 0.8], [0, -0.44, 0], [0.3, 0.3, 0.3])
-const billBoardLight = new create.spotLight(1.4, 0xffaea3, [0.19, -0.69, 1.84], [0.53, 0.18, 0.8])
-scene.add(billBoardLight)
+//const billBoardLight = new create.spotLight(1.4, 0xffaea3, [0.19, -0.69, 1.84], [0.53, 0.18, 0.8])
+//scene.add(billBoardLight)
 
 // Description 1
 load.text("software that allows mcdonald's teams", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.9], [-1.571, 0, 0])
@@ -256,19 +256,62 @@ load.text("products and drive new promotions.", 0.03, 0x878787, 0, [-0.394, 0.00
 load.text("SKILLS", 0.15, 0xa8a8a8, 0.03, [0.24, 0.01, 4.7], [0, -0.4, 0], "skills")
 
 var python = load.model("models/section_art/skills/python.gltf", [-0.07, 0.18, 5], [0, 0.3, 0], [0.1, 0.1, 0.1])
-debug.object(python, "Python")
+//debug.object(python, "Python", -4, 7)
 
 var js = load.model("models/section_art/skills/javascript.gltf", [-0.2, 0.3, 5.45], [0, 0.54, 0], [0.04, 0.04, 0.04])
-debug.object(js, "JS")
+//debug.object(js, "JS", -4, 7)
 
 var html = load.model("models/section_art/skills/html-css.gltf", [-0.07, 0.18, 5.8], [0, 0.54, 0], [0.08, 0.08, 0.08])
-debug.object(html, "html")
+//debug.object(html, "html", -4, 7)
 
 var cloud = load.model("models/section_art/skills/gcp.gltf", [0.42, 0.35, 5.8], [0, -0.68, 0], [0.06, 0.06, 0.06])
-debug.object(cloud, "GCP")
+//debug.object(cloud, "GCP", -4, 7)
 
 var sql = load.model("models/section_art/skills/mysql.gltf", [0.3, 0.22, 6.2], [0, -0.19, 0], [0.08, 0.08, 0.08])
-debug.object(sql, "MySQL")
+//debug.object(sql, "MySQL", -4, 7)
+
+var node = load.model("models/section_art/skills/node.gltf", [0, 0.18, 6.4], [0, 0.4, 0], [0.09, 0.09, 0.09])
+//debug.object(node, "Node", -4, 7)
+
+var git = load.model("models/section_art/skills/git.gltf", [0.4, 0.18, 6.5], [0, -0.4, 0], [0.08, 0.08, 0.08])
+//debug.object(git, "Git", -4, 7)
+
+var blender = load.model("models/section_art/skills/blender.gltf", [-0.07, 0.13, 6.76], [-0.3, 0.55, 0], [0.08, 0.08, 0.08])
+//debug.object(blender, "Blender", -4, 7)
+
+
+// FINAL SECTION
+
+// load.text("Let's Work Together!", 0.08, 0xa8a8a8, 0.02, [-0.44, 0.11, 7.8], [0, 0, 0])
+
+// Title
+var lets = load.text("Let's", 0.08, 0xa8a8a8, 0.015, [-0.2, 0.32, 8], [-0.4, 0, 0])
+var work = load.text("Work", 0.08, 0xa8a8a8, 0.015, [-0.1, 0.22, 8.05], [-0.4, 0, 0])
+var together = load.text("Together!", 0.08, 0xb50018, 0.015, [0, 0.11, 8.1], [-0.4, 0, 0])
+debug.object(lets, "1 LETS", -1, 9)
+debug.object(work, "2 WORK", -1, 9)
+debug.object(together, "3 TOGETHER", -1, 9)
+
+
+// Desktop
+var desktop = load.model("models/section_art/final/desktop.gltf", [-0.3, 0.04, 8.2], [0, 0, 0], [0.7, 0.7, 0.7])
+debug.object(desktop, "Desktop", -2, 10)
+
+// Robot
+var robot = load.model("models/section_art/final/robot.gltf", [0.6, 0.12, 8.2], [0, 0, 0], [0.7, 0.7, 0.7])
+debug.object(robot, "Robot", -1, 1)
+
+// Robot animation
+var robo_turn = gsap.timeline({ repeat: -1, repeatDelay: 2 });
+robo_turn.to(robot.rotation, { y: 0, duration: 1, ease: "none" })
+robo_turn.to(robot.rotation, { y: 1, duration: 6, ease: "none" })
+robo_turn.to(robot.rotation, { y: 1, duration: 1, ease: "none" })
+robo_turn.to(robot.rotation, { y: -1, duration: 8, ease: "none" })
+robo_turn.to(robot.rotation, { y: -1, duration: 1, ease: "none" })
+robo_turn.to(robot.rotation, { y: 0, duration: 6, ease: "none" })
+
+
+
 
 // Renderer
  
@@ -302,12 +345,21 @@ const render_code_button1 = addAsset.button('code', [-0.1, 0.03, 2.05], mouse, c
 const render_images_button = addAsset.button('images', [0.35, 0.03, 2.05], mouse, camera, false, modal.images)
 
 const render_code_button2 = addAsset.button('code', [-0.1, 0.03, 4], mouse, camera, 'https://github.com/isaiah-gordon/dotops')
-const render_images_button2 = addAsset.button('video', [0.35, 0.03, 4], mouse, camera, false, modal.video)
+const render_video_button = addAsset.button('video', [0.35, 0.03, 4], mouse, camera, false, modal.video)
 
+const render_contact_button = addAsset.button('contact', [0.17, 0.03, 8.4], mouse, camera, false, modal.contact)
+const render_resume_button = addAsset.button('resume', [0.17, 0.03, 8.6], mouse, camera, "https://storage.googleapis.com/isaiah-gordon.com/Isaiah%20Gordon's%20Resume.pdf")
 
+console.log(window.height)
 const updateCamera = (event) => {
-    // console.log(window.scrollY)
+    //console.log(window.scrollY)
     camera.position.z = window.scrollY * .002
+    
+    if (camera.position.z > 9) {
+        var scrollSection = document.getElementById("scroll-section");
+        var canvas = document.getElementById("webgl");
+        scrollSection.style.height = (canvas.offsetHeight + window.scrollY ) + "px"
+    }
 }
 
 window.addEventListener('scroll', updateCamera)
@@ -328,7 +380,10 @@ const tick = () => {
     render_images_button()
 
     render_code_button2()
-    render_images_button2()
+    render_video_button()
+
+    render_contact_button()
+    render_resume_button()
     
 
     // Render

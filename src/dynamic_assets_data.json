@@ -22,18 +22,32 @@
       "bottom_light_color": "#1515d6"
     },
     "images": {
-      "link_source": "https://dotops.app/",
+      "link_source": "",
       "model_source": "models/buttons/images_button.gltf",
       "model_scale": 0.6,
       "top_light_color": "#dbdbdb",
       "bottom_light_color": "#16c91c"
     },
     "video": {
-      "link_source": "https://dotops.app/",
+      "link_source": "",
       "model_source": "models/buttons/video_button.gltf",
       "model_scale": 0.6,
       "top_light_color": "#dbdbdb",
       "bottom_light_color": "#16c91c"
+    },
+    "contact": {
+      "link_source": "",
+      "model_source": "models/buttons/contact_button.gltf",
+      "model_scale": 0.8,
+      "top_light_color": "#ba1828",
+      "bottom_light_color": "#16c91c"
+    },
+    "resume": {
+      "link_source": "",
+      "model_source": "models/buttons/resume_button.gltf",
+      "model_scale": 0.6,
+      "top_light_color": "#5a0075",
+      "bottom_light_color": "#5a0075"
     }
   }
 }

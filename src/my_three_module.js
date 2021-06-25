@@ -11,17 +11,17 @@ class Debug {
         this.debug_gui = debug_gui
     }
 
-    object(obj, folderName) {
+    object(obj, folderName, minVal, maxVal) {
 
         var object_debug = this.debug_gui.addFolder(folderName)
 
-        object_debug.add(obj.position, 'x').min(-4).max(7).name("<b>X Position</b> &#x1F697")
-        object_debug.add(obj.position, 'y').min(-4).max(7).name("<b>Y Position</b> &#x1F446")
-        object_debug.add(obj.position, 'z').min(-4).max(7).name("<b>Z Position</b> &#x1F698")
+        object_debug.add(obj.position, 'x').min(minVal).max(maxVal).name("<b>X Position</b> &#x1F697")
+        object_debug.add(obj.position, 'y').min(minVal).max(maxVal).name("<b>Y Position</b> &#x1F446")
+        object_debug.add(obj.position, 'z').min(minVal).max(maxVal).name("<b>Z Position</b> &#x1F698")
 
-        object_debug.add(obj.rotation, 'x').min(-4).max(7).step(0.01).name("X Rotation")
-        object_debug.add(obj.rotation, 'y').min(-4).max(7).step(0.01).name("Y Rotation")
-        object_debug.add(obj.rotation, 'z').min(-4).max(7).step(0.01).name("Z Rotation")
+        object_debug.add(obj.rotation, 'x').min(minVal).max(maxVal).step(0.01).name("X Rotation")
+        object_debug.add(obj.rotation, 'y').min(minVal).max(maxVal).step(0.01).name("Y Rotation")
+        object_debug.add(obj.rotation, 'z').min(minVal).max(maxVal).step(0.01).name("Z Rotation")
     }
 
 

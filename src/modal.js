@@ -52,6 +52,16 @@ class Open {
         modal.style.display = "block";
         document.body.style.overflow = 'hidden';
     }
+
+    contact() {
+        var modal = document.getElementById("modal");
+        var modal_frame = document.getElementById("modal-iframe");
+
+        modal_frame.src = "modal_templates/contact_modal.html"
+
+        modal.style.display = "block";
+        document.body.style.overflow = 'hidden';
+    }
       
 }
 
