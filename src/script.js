@@ -10,7 +10,7 @@ import gsap from 'gsap'
 // Import my modules.
 import * as Builder from './my_three_module.js'
 import * as Assets from './dynamic_assets.js'
-import * as Modal from './modal.js'
+import * as Button from './buttons.js'
 
 // Loading Manager
 const loadingManager = new THREE.LoadingManager(() => {
@@ -101,8 +101,6 @@ const debug = new Builder.Debug(gui)
 debug.object(camera, "Camera")
 
 
-const modal = new Modal.Open
-
 // Sky Light
 // (The sun is a deadly lazer!)
 
@@ -139,7 +137,6 @@ const addAsset = new Assets.Create(scene, gltf_loader)
 // TOP OF PAGE
 load.text("ISAIAH GORDON", 0.11, 0xa8a8a8, 0.03, [-0.47, 0.11, -1], [-0.4, 0, 0])
 load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.4, 0, 0])
-
 
 
 // FLOOR BOARD SECTION
@@ -337,20 +334,23 @@ function onMouseMove(event) {
 
 window.addEventListener('mousemove', onMouseMove, false);
 
+const button_render = Button.Create(mouse, camera, scene, gltf_loader)
+
 // Setup Buttons
-const render_github_button = addAsset.button('github', [0.5, 0.02, -0.6], mouse, camera, 'https://github.com/isaiah-gordon')
-const render_linkedin_button = addAsset.button('linkedin', [0.2, 0.03, -0.6], mouse, camera, 'https://linkedin.com/in/isaia')
+//const render_github_button = addAsset.button('github', [0.5, 0.02, -0.6], mouse, camera, 'https://github.com/isaiah-gordon')
+//const render_linkedin_button = addAsset.button('linkedin', [0.2, 0.03, -0.6], mouse, camera, 'https://linkedin.com/in/isaia')
 
-const render_code_button1 = addAsset.button('code', [-0.1, 0.03, 2.05], mouse, camera, 'https://github.com/isaiah-gordon/floor-board')
-const render_images_button = addAsset.button('images', [0.35, 0.03, 2.05], mouse, camera, false, modal.images)
+//const render_code_button1 = addAsset.button('code', [-0.1, 0.03, 2.05], mouse, camera, 'https://github.com/isaiah-gordon/floor-board')
+//const render_images_button = addAsset.button('images', [0.35, 0.03, 2.05], mouse, camera, false, modal.images)
 
-const render_code_button2 = addAsset.button('code', [-0.1, 0.03, 4], mouse, camera, 'https://github.com/isaiah-gordon/dotops')
-const render_video_button = addAsset.button('video', [0.35, 0.03, 4], mouse, camera, false, modal.video)
+//const render_code_button2 = addAsset.button('code', [-0.1, 0.03, 4], mouse, camera, 'https://github.com/isaiah-gordon/dotops')
+//const render_video_button = addAsset.button('video', [0.35, 0.03, 4], mouse, camera, false, modal.video)
 
-const render_contact_button = addAsset.button('contact', [0.17, 0.03, 8.4], mouse, camera, false, modal.contact)
-const render_resume_button = addAsset.button('resume', [0.17, 0.03, 8.6], mouse, camera, "https://storage.googleapis.com/isaiah-gordon.com/Isaiah%20Gordon's%20Resume.pdf")
+//const render_contact_button = addAsset.button('contact', [0.17, 0.03, 8.4], mouse, camera, false, modal.contact)
+//const render_resume_button = addAsset.button('resume', [0.17, 0.03, 8.6], mouse, camera, "https://storage.googleapis.com/isaiah-gordon.com/Isaiah%20Gordon's%20Resume.pdf")
 
-console.log(window.height)
+
+
 const updateCamera = (event) => {
     //console.log(window.scrollY)
     camera.position.z = window.scrollY * .002
@@ -373,17 +373,19 @@ const tick = () => {
 
     //render()
     document.body.style.cursor = "default";
-    render_linkedin_button()
-    render_github_button()
+    //render_linkedin_button()
+    //render_github_button()
 
-    render_code_button1()
-    render_images_button()
+    //render_code_button1()
+    //render_images_button()
 
-    render_code_button2()
-    render_video_button()
+    //render_code_button2()
+    //render_video_button()
 
-    render_contact_button()
-    render_resume_button()
+    //render_contact_button()
+    //render_resume_button()
+
+    button_render()
     
 
     // Render

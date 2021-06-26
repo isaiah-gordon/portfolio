@@ -62,6 +62,16 @@ class Open {
         modal.style.display = "block";
         document.body.style.overflow = 'hidden';
     }
+
+    open(modal_name) {
+        var modal = document.getElementById("modal");
+        var modal_frame = document.getElementById("modal-iframe");
+
+        modal_frame.src = "modal_templates/" + modal_name + "_modal.html"
+
+        modal.style.display = "block";
+        document.body.style.overflow = 'hidden';
+    }
       
 }
 

@@ -1,0 +1,74 @@
+{
+  "github": {
+    "link_source": "https://github.com/isaiah-gordon",
+    "model_source": "models/buttons/github_button.gltf",
+    "position": [ 0.5, 0.02, -0.6 ],
+    "scale": 0.9,
+    "bound_box_scale": [ 0.2, 0.1, 0.2 ],
+    "top_light_color": "#5a0075",
+    "bottom_light_color": "#5a0075"
+  },
+  "linkedin": {
+    "link_source": "https://linkedin.com/in/isaia",
+    "model_source": "models/buttons/linkedin_button.gltf",
+    "position": [ 0.2, 0.03, -0.6 ],
+    "scale": 0.9,
+    "bound_box_scale": [ 0.2, 0.1, 0.2 ],
+    "top_light_color": "#0071eb",
+    "bottom_light_color": "#0071eb"
+  },
+  "code1": {
+    "link_source": "https://github.com/isaiah-gordon/floor-board",
+    "model_source": "models/buttons/code_button.gltf",
+    "position": [ -0.1, 0.03, 2.05 ],
+    "scale": 0.6,
+    "bound_box_scale": [ 0.3, 0.1, 0.1 ],
+    "top_light_color": "#dbdbdb",
+    "bottom_light_color": "#1515d6"
+  },
+  "images": {
+    "link_source": false,
+    "model_source": "models/buttons/images_button.gltf",
+    "position": [ 0.35, 0.03, 2.05 ],
+    "scale": 0.6,
+    "bound_box_scale": [ 0.4, 0.1, 0.1 ],
+    "top_light_color": "#dbdbdb",
+    "bottom_light_color": "#16c91c"
+  },
+  "code2": {
+    "link_source": "https://github.com/isaiah-gordon/dotops",
+    "model_source": "models/buttons/code_button.gltf",
+    "position": [ -0.1, 0.03, 4 ],
+    "scale": 0.6,
+    "bound_box_scale": [ 0.3, 0.1, 0.1 ],
+    "top_light_color": "#dbdbdb",
+    "bottom_light_color": "#1515d6"
+  },
+  "video": {
+    "link_source": false,
+    "model_source": "models/buttons/video_button.gltf",
+    "position": [ 0.35, 0.03, 4 ],
+    "scale": 0.6,
+    "bound_box_scale": [ 0.4, 0.1, 0.1 ],
+    "top_light_color": "#dbdbdb",
+    "bottom_light_color": "#16c91c"
+  },
+  "contact": {
+    "link_source": false,
+    "model_source": "models/buttons/contact_button.gltf",
+    "position": [ 0.17, 0.03, 8.4 ],
+    "scale": 0.8,
+    "bound_box_scale": [ 0.5, 0.05, 0.15 ],
+    "top_light_color": "#ba1828",
+    "bottom_light_color": "#16c91c"
+  },
+  "resume": {
+    "link_source": "https://storage.googleapis.com/isaiah-gordon.com/Isaiah%20Gordon's%20Resume.pdf",
+    "model_source": "models/buttons/resume_button.gltf",
+    "position": [ 0.17, 0.03, 8.6 ],
+    "scale": 0.6,
+    "bound_box_scale": [ 0.4, 0.05, 0.1 ],
+    "top_light_color": "#5a0075",
+    "bottom_light_color": "#5a0075"
+  }
+}

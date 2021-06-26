@@ -54,7 +54,19 @@ class Load {
         this.scene_arg = scene_arg
         this.loader = loader
         this.debug_gui = debug_gui
-        console.log(loader)
+    }
+
+    hitBox(position, scale) {
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0 });
+        const cube = new THREE.Mesh(geometry, material);
+
+        cube.position.set(...position)
+        cube.scale.set(...scale)
+
+        this.scene_arg.add(cube);
+
+        return cube
     }
 
     model(source, position, rotation, scale) {
@@ -64,7 +76,7 @@ class Load {
         //const gltfLoader = new GLTFLoader()
         const gltfLoader = loader
 
-        var modelGroup = new THREE.Object3D()
+        const modelGroup = new THREE.Object3D()
         scene_arg.add(modelGroup)
 
         gltfLoader.load(source, (gltf) => {
