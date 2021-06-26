@@ -70,7 +70,7 @@ h1 {
 
     width: 60%;
     max-width: 800px;
-    height: 85%;
+    height: 75%;
 }
 
 @media (max-width : 800px) {
@@ -78,7 +78,7 @@ h1 {
         margin: 0% auto;
         width: 100%;
         min-width: 400px;
-        height: 60%;
+        height: 70%;
         min-width: 280px;
     }
 }

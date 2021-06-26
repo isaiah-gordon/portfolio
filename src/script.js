@@ -85,14 +85,22 @@ camera.zoom = 0.7
 camera.fov = 45
 
 // Mobile Responsive Camera Settings
-if (innerWidth < 1050) {
+if (innerWidth < 450 && innerHeight > 800) {
+
+    camera.position.set(0.14, 1.5, 0);
+    camera.rotation.set(-1.1, 0, 0)
+
+    camera.zoom = 0.5
+    camera.fov = 45
+}
+else if (innerWidth < 1050) {
 
     camera.position.set(0.14, 1.1, 0);
     camera.rotation.set(-1.1, 0, 0)
 
     camera.zoom = 0.5
     camera.fov = 45
-}
+} 
 
 camera.updateProjectionMatrix();
 scene.add(camera)
