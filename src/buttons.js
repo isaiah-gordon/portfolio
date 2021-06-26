@@ -10,7 +10,6 @@ import * as Modal from './modal.js'
 const modal = new Modal.Open
 
 const BUTTON_DATA = require('./button_data.json');
-console.log(BUTTON_DATA['linkedin']['model_source'])
 
 
 function Create(mouse, camera, scene, loader) {
@@ -20,7 +19,7 @@ function Create(mouse, camera, scene, loader) {
 
     var buttons = []
     var button_bounds = []
-    var buttonLights = {}
+    var buttonLights = []
 
     for (const [key, value] of Object.entries(BUTTON_DATA)) {
 
@@ -35,14 +34,12 @@ function Create(mouse, camera, scene, loader) {
         BUTTON_BOUND_BOX.name = key
 
         var TOP_LIGHT_Y = BUTTON['position'][1] + 0.09
-        var BOTTOM_LIGHT_Y = BUTTON['position'][1] - 0.02
 
         var BUTTON_TOP_LIGHT = create.pointLight(0, BUTTON['top_light_color'], [BUTTON['position'][0], TOP_LIGHT_Y, BUTTON['position'][2]])
-        var BUTTON_BOTTOM_LIGHT = create.pointLight(0, BUTTON['bottom_light_color'], [BUTTON['position'][0], BOTTOM_LIGHT_Y, BUTTON['position'][2]])
 
         buttons.push(BUTTON_MODEL)
         button_bounds.push(BUTTON_BOUND_BOX)
-        buttonLights[key] = { 'top_light': BUTTON_TOP_LIGHT, 'bottom_light': BUTTON_BOTTOM_LIGHT }
+        buttonLights[key] = (BUTTON_TOP_LIGHT)
         
     }
 
@@ -63,8 +60,7 @@ function Create(mouse, camera, scene, loader) {
             //var active_button = scene.getObjectByName(active_button_name)
 
             gsap.to(scene.getObjectByName(intersects[i].object.name).position, { y: BUTTON_ANIMATION_Y, duration: 0.5 })
-            gsap.to(buttonLights[intersects[i].object.name]['top_light'], { intensity: 0.5, duration: 0.5 })
-            gsap.to(buttonLights[intersects[i].object.name]['bottom_light'], { intensity: 0.5, duration: 0.5 })
+            gsap.to(buttonLights[intersects[i].object.name], { intensity: 1, duration: 0.5 })
             document.body.style.cursor = "pointer";
 
             return intersects[i].object.name
@@ -76,8 +72,7 @@ function Create(mouse, camera, scene, loader) {
                 //var non_active_button = scene.getObjectByName(button.name)
 
                 gsap.to(scene.getObjectByName(button.name).position, { y: BUTTON_DATA[scene.getObjectByName(button.name).name]['position'][1], duration: 0.5 })
-                gsap.to(buttonLights[button.name]['top_light'], { intensity: 0, duration: 0.5 })
-                gsap.to(buttonLights[button.name]['bottom_light'], { intensity: 0, duration: 0.5 })
+                gsap.to(buttonLights[button.name], { intensity: 0, duration: 0.5 })
             }
         }
 
@@ -101,27 +96,4 @@ function Create(mouse, camera, scene, loader) {
 
 }
 
-function Test() {
-    //console.log(BUTTON_DATA['github']['link_source'])
-
-    //var wowee = BUTTON_DATA['github']
-
-    //console.log(wowee['model_source'])
-
-    //for (const [key, value] of Object.entries(BUTTON_DATA)) {
-    //    //console.log(key, value)
-    //    console.log(BUTTON_DATA[key]['model_source'])
-    //}
-
-
-    var dict = {}
-
-    dict['steve'] = 123
-    dict['bob'] = 321
-    dict['bob'] = 666
-
-    console.log(dict)
-    console.log(dict['bob'])
-}
-
-export { Create, Test }
+export { Create }

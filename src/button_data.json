@@ -5,8 +5,7 @@
     "position": [ 0.5, 0.02, -0.6 ],
     "scale": 0.9,
     "bound_box_scale": [ 0.2, 0.1, 0.2 ],
-    "top_light_color": "#5a0075",
-    "bottom_light_color": "#5a0075"
+    "top_light_color": "#5a0075"
   },
   "linkedin": {
     "link_source": "https://linkedin.com/in/isaia",
@@ -14,8 +13,7 @@
     "position": [ 0.2, 0.03, -0.6 ],
     "scale": 0.9,
     "bound_box_scale": [ 0.2, 0.1, 0.2 ],
-    "top_light_color": "#0071eb",
-    "bottom_light_color": "#0071eb"
+    "top_light_color": "#0071eb"
   },
   "code1": {
     "link_source": "https://github.com/isaiah-gordon/floor-board",
@@ -23,8 +21,7 @@
     "position": [ -0.1, 0.03, 2.05 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.3, 0.1, 0.1 ],
-    "top_light_color": "#dbdbdb",
-    "bottom_light_color": "#1515d6"
+    "top_light_color": "#dbdbdb"
   },
   "images": {
     "link_source": false,
@@ -32,8 +29,7 @@
     "position": [ 0.35, 0.03, 2.05 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.4, 0.1, 0.1 ],
-    "top_light_color": "#dbdbdb",
-    "bottom_light_color": "#16c91c"
+    "top_light_color": "#dbdbdb"
   },
   "code2": {
     "link_source": "https://github.com/isaiah-gordon/dotops",
@@ -41,8 +37,7 @@
     "position": [ -0.1, 0.03, 4 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.3, 0.1, 0.1 ],
-    "top_light_color": "#dbdbdb",
-    "bottom_light_color": "#1515d6"
+    "top_light_color": "#dbdbdb"
   },
   "video": {
     "link_source": false,
@@ -50,8 +45,7 @@
     "position": [ 0.35, 0.03, 4 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.4, 0.1, 0.1 ],
-    "top_light_color": "#dbdbdb",
-    "bottom_light_color": "#16c91c"
+    "top_light_color": "#dbdbdb"
   },
   "contact": {
     "link_source": false,
@@ -59,8 +53,7 @@
     "position": [ 0.17, 0.03, 8.4 ],
     "scale": 0.8,
     "bound_box_scale": [ 0.5, 0.05, 0.15 ],
-    "top_light_color": "#ba1828",
-    "bottom_light_color": "#16c91c"
+    "top_light_color": "#4dff55"
   },
   "resume": {
     "link_source": "https://storage.googleapis.com/isaiah-gordon.com/Isaiah%20Gordon's%20Resume.pdf",
@@ -68,7 +61,6 @@
     "position": [ 0.17, 0.03, 8.6 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.4, 0.05, 0.1 ],
-    "top_light_color": "#5a0075",
-    "bottom_light_color": "#5a0075"
+    "top_light_color": "#5a0075"
   }
 }
