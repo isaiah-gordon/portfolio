@@ -85,7 +85,15 @@ camera.zoom = 0.7
 camera.fov = 45
 
 // Mobile Responsive Camera Settings
-if (innerWidth < 450 && innerHeight > 800) {
+if (innerWidth > 1900) {
+
+    camera.position.set(0.14, 0.8, 0);
+    camera.rotation.set(-0.8, 0, 0)
+
+    camera.zoom = 0.8
+    camera.fov = 45
+}
+else if (innerWidth < 450 && innerHeight > 800) {
 
     camera.position.set(0.14, 1.5, 0);
     camera.rotation.set(-1.1, 0, 0)

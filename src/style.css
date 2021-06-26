@@ -36,6 +36,28 @@ h1 {
     color: white;
 }
 
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #212121;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #adadad;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #5c73b5;
+    }
+
+
 #scroll-section {
     height: 0
 }
