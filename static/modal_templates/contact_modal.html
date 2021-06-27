@@ -2,40 +2,206 @@
 <html>
 <head>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="loading.css">
 
     <style>
         body {
             background-color: #1c1c1c;
             padding: 5%;
+            font-family: Poppins;
+        }
+
+        h1 {
+            color: #f2f2f2;
+            font-size: 6vw;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin-top: -20px;
+            margin-bottom: -10px;
+        }
+
+        h2 {
+            color: #f2f2f2;
+            font-size: 4vw;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin-bottom: -10px;
         }
 
         input {
+            height: 50px;
             width: 100%;
-            height: 40px;
+            text-indent: 25px;
+            margin-top: 25px;
+            font-size: 20px;
+            font-family: 'Poppins';
+            background-color: #bababa;
+            border: 0px;
+            color: black;
         }
 
-        iframe {
-            overflow: hidden;
+        textarea {
+            height: 25vh;
+            width: 100%;
+            margin-top: 25px;
+            font-size: 20px;
+            padding-top: 10px;
+            text-indent: 25px;
+            font-family: 'Poppins';
+            background-color: #bababa;
+            border: 0px;
+            color: black;
+        }
+
+        #submit {
+            margin: 0 auto;
+            display: block;
+            margin-top: 20px;
+            left: auto;
+            text-align: center;
+            text-indent: 0px;
+            text-align: center;
+            width: 60%;
+            height: 50px;
+            background-color: #34ed4d;
+            border: 0px;
+            font-weight: bold;
+            font-size: 30px;
+            font-family: 'Poppins';
+            color: black;
+            border-radius: 60px
+        }
+
+            #submit:hover {
+                background: #00b518;
+                transform: scale(1.02);
+                cursor: pointer;
+            }
+
+        form .error {
+            color: #ff0000;
         }
 
         .text {
             color: #f2f2f2;
             font-size: 3vw;
-            font-family: Poppins;
             padding: 8px 12px;
             position: relative;
             bottom: -8px;
             text-align: center;
         }
+
+        #loading-screen {
+            opacity: 0;
+            z-index: -1;
+        }
+
     </style>
 </head>
 
 <body>
 
-    <input></input>
+    <div>
+
+        <h1 id="title">Contact</h1>
+        <h2 id="subtitle"></h2>
+
+        <form id="form">
+            <input id="email" name="email" placeholder="Email">
+            <input id="subject" name="subject" placeholder="Subject">
+            <textarea id="message" name="message" placeholder="Message"></textarea>
+            <input id="submit" type="submit" value="SEND">
+        </form>
+
+    </div>
+
+    <div id="loading-screen">
+        <section id="loader-container">
+            <section id="box1"></section>
+            <section id="box2"></section>
+            <section id="box3"></section>
+        </section>
+    </div>
+
+    <script>
+
+
+        $(function () {
+            $('form').validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    subject: "required",
+                    message: "required",
+
+                },
+                // Specify validation error messages
+                messages: {
+                    email: "Invalid email.",
+                    subject: "Subject required.",
+                    message: "Message required."
+                },
+                submitHandler: function (form) {
+
+                    document.getElementById("loading-screen").style.opacity = 1
+                    document.getElementById("loading-screen").style.zIndex = 1
+
+                    event.preventDefault();
+
+                    const email = $('#email').val().trim();
+                    const subject = $('#subject').val().trim();
+                    const message = $('#message').val().trim();
+
+                    const data = {
+                        email,
+                        subject,
+                        message
+                    };
+
+                    function showError() {
+                        document.getElementById("title").innerText = "Oh no! &#128557;"
+                        document.getElementById("subtitle").innerText = "Something is wrong! Please try again in a little while."
+                    }
+
+                    
+                    $.post('/email', data, function (data) {
+                        if (data['status'] == true) {
+                            console.log('Message sent!')
+                            document.getElementById("title").innerText = "Message Sent"
+                            document.getElementById("subtitle").innerText = "Thank you for reaching out!"
+                            document.getElementById("form").remove()
+                            document.getElementById("loading-screen").style.opacity = 0
+                            document.getElementById("loading-screen").style.zIndex = -1
+                        } else {
+                            console.log('Message Error.')
+                            document.getElementById("title").innerText = "Oh no! &#128557;"
+                            document.getElementById("subtitle").innerText = "Something is wrong! Please try again in a little while."
+                            document.getElementById("form").remove()
+                            document.getElementById("loading-screen").style.opacity = 0
+                            document.getElementById("loading-screen").style.zIndex = -1
+                        }
+                    })
+
+                }
+            });
+        });
+
+
+
+        
+
+    </script>
 
 </body>
 </html>

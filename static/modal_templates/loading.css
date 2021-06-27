@@ -1,142 +1,3 @@
-*
-{
-    margin: 0;
-    padding: 0;
-}
-
-html,
-body {
-    height: 100%;
-    font-family: 'Poppins';
-}
-
-body {
-    overflow-x: hidden;
-    background-color: black;
-}
-
-.webgl {
-    position: fixed;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    outline: none;
-    mix-blend-mode: exclusion;
-}
-
-.container {
-    height: 100vh;
-    display: grid;
-    place-items: center;  
-}
-
-h1 {
-    font-size: 4rem;
-    text-transform: uppercase;
-    color: white;
-}
-
-/* SCROLLBAR */
-/* width */
-::-webkit-scrollbar {
-    width: 14px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: #212121;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #adadad;
-}
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #5c73b5;
-    }
-
-
-#scroll-section {
-    height: 0
-}
-
-    #scroll-section.loaded-height {
-        height: 1400vh
-    }
-
-
-
-/* MODAL */
-
-/* Modal background */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 2; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: hidden; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
-}
-
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #1c1c1c;
-    margin: 2% auto; /* 15% from the top and centered */
-
-    width: 60%;
-    max-width: 800px;
-    height: 75%;
-}
-
-@media (max-width : 800px) {
-    .modal-content {
-        margin: 0% auto;
-        width: 100%;
-        min-width: 400px;
-        height: 70%;
-        min-width: 280px;
-    }
-}
-@media (max-width : 400px) {
-    .modal-content {
-        margin: 0% auto;
-        width: 100%;
-        height: 100%;
-    }
-}
-
-#modal-iframe {
-    border: none;
-    width: 100%;
-    height: 90%;
-}
-
-
-/* Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 50px;
-    font-weight: bold;
-    padding-right: 10px;
-}
-
-    .close:hover,
-    .close:focus {
-        color: #990000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-
-
 /* LOADING SCREEN */
 #loading-screen {
     position: absolute;
@@ -159,54 +20,60 @@ h1 {
     }
 
 @keyframes fade-out {
-    0% {opacity: 1;}
-    99% {opacity: 0;}
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+
     100% {
         z-index: -1;
         opacity: 0;
     }
 }
 
-    #loader-container {
-        width: 112px;
-        height: 112px;
-    }
+#loader-container {
+    width: 112px;
+    height: 112px;
+}
 
-    #box1, #box2, #box3 {
-        border: 16px solid #f5f5f5;
-        box-sizing: border-box;
-        position: absolute;
-        display: block;
-    }
+#box1, #box2, #box3 {
+    border: 16px solid #f5f5f5;
+    box-sizing: border-box;
+    position: absolute;
+    display: block;
+}
 
-    #box1 {
-        width: 112px;
-        height: 48px;
-        margin-top: 64px;
-        margin-left: 0px;
-        animation: anime1 4s 0s forwards ease-in-out infinite;
-    }
+#box1 {
+    width: 112px;
+    height: 48px;
+    margin-top: 64px;
+    margin-left: 0px;
+    animation: anime1 4s 0s forwards ease-in-out infinite;
+}
 
-    #box2 {
-        width: 48px;
-        height: 48px;
-        margin-top: 0px;
-        margin-left: 0px;
-        animation: anime2 4s 0s forwards ease-in-out infinite
-    }
+#box2 {
+    width: 48px;
+    height: 48px;
+    margin-top: 0px;
+    margin-left: 0px;
+    animation: anime2 4s 0s forwards ease-in-out infinite
+}
 
-    #box3 {
-        width: 48px;
-        height: 48px;
-        margin-top: 0px;
-        margin-left: 64px;
-        animation: anime3 4s 0s forwards ease-in-out infinite
-    }
+#box3 {
+    width: 48px;
+    height: 48px;
+    margin-top: 0px;
+    margin-left: 64px;
+    animation: anime3 4s 0s forwards ease-in-out infinite
+}
 
 
 
-    @keyframes anime1 {
-        0% {
+@keyframes anime1 {
+    0% {
         width: 112px;
         height: 48px;
         margin-top: 64px;
