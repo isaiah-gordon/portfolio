@@ -42,7 +42,7 @@ function Create(mouse, camera, scene, loader) {
         buttonLights[key] = (BUTTON_TOP_LIGHT)
         
     }
-
+    
     const BUTTON_ANIMATION_Y = BUTTON['position'][1] + 0.03
 
     const raycaster = new THREE.Raycaster();

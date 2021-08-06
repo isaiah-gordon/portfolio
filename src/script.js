@@ -47,9 +47,9 @@ const gltf_loader = new GLTFLoader(loadingManager )
 const gui = new dat.GUI()
 dat.GUI.toggleHide();
 
-var stats = new Stats();
-stats.showPanel(1);
-document.body.appendChild( stats.dom )
+//var stats = new Stats();
+//stats.showPanel(1);
+//document.body.appendChild( stats.dom )
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -151,7 +151,7 @@ const create = new Builder.Create(scene)
 const addAsset = new Assets.Create(scene, gltf_loader)
 
 // TOP OF PAGE
-load.text("ISAIAH GORDON", 0.11, 0xa8a8a8, 0.03, [-0.47, 0.11, -1], [-0.4, 0, 0])
+load.text("Isaiah Gordon", 0.11, 0xa8a8a8, 0.03, [-0.47, 0.11, -1], [-0.4, 0, 0])
 load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0.4, 0, 0])
 
 
@@ -159,15 +159,15 @@ load.text("Developer & IT Pro", 0.085, 0xb50018, 0.02, [-0.33, 0.03, -0.92], [-0
 
 // Titles
 load.text("PROJECTS", 0.13, 0xa8a8a8, 0.02, [-0.525, 0.01, 0.535], [0, 0.36, 0])
-load.text("Floor Board", 0.08, 0xE73E43, 0.006, [-0.4, 0, 0.82], [-1.5708, 0, 0])
+load.text("Floor Board", 0.08, 0xE73E43, 0.02, [-0.4, -0.006, 0.82], [-1.5708, 0, 0])
 
 // Bill Board
-load.model("models/section_art/floor_board/fb_bill_board_image.gltf", [0.53, 0.18, 0.8], [0, -0.44, 0], [0.3, 0.3, 0.3])
+//load.model("models/section_art/floor_board/fb_bill_board_image.gltf", [0.53, 0.18, 0.8], [0, -0.44, 0], [0.3, 0.3, 0.3])
 //const billBoardLight = new create.spotLight(1.4, 0xffaea3, [0.19, -0.69, 1.84], [0.53, 0.18, 0.8])
 //scene.add(billBoardLight)
 
 // Description 1
-load.text("software that allows mcdonald's teams", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.9], [-1.571, 0, 0])
+load.text("Software that allows McDonald's teams", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.9], [-1.571, 0, 0])
 load.text("to visulize sales data in real time!", 0.037, 0xedeef0, 0, [-0.39, 0.001, 0.97], [-1.571, 0, 0])
 
 // McD Store
@@ -193,10 +193,10 @@ var mcdSign = load.model("models/section_art/floor_board/mcd_sign.gltf", [-0.44,
 // Description 2
 load.text("Currently being tested at a", 0.03, 0x878787, 0, [-0.04, 0.001, 1.15], [-1.571, 0, 0])
 load.text("few locations, my software is", 0.03, 0x878787, 0, [-0.04, 0.001, 1.21], [-1.571, 0, 0])
-load.text("displayed on a board located", 0.03, 0x878787, 0, [-0.04, 0.001, 1.27], [-1.571, 0, 0])
-load.text('"on the floor" where staff can', 0.03, 0x878787, 0, [-0.04, 0.001, 1.33], [-1.571, 0, 0])
-load.text('see. It shows how much of a', 0.03, 0x878787, 0, [-0.04, 0.001, 1.39], [-1.571, 0, 0])
-load.text('certain product is being sold.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.45], [-1.571, 0, 0])
+load.text("displayed on a large monitor", 0.03, 0x878787, 0, [-0.04, 0.001, 1.27], [-1.571, 0, 0])
+load.text('where staff can easly see it.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.33], [-1.571, 0, 0])
+load.text('It shows how much of a certain', 0.03, 0x878787, 0, [-0.04, 0.001, 1.39], [-1.571, 0, 0])
+load.text('product is being sold.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.45], [-1.571, 0, 0])
 
 
 // French Fries
@@ -225,7 +225,7 @@ load.text("see how much their team upsells.", 0.03, 0x878787, 0, [-0.394, 0.001,
 // DOTOPS SECTION
 
 // Titles
-load.text("Dotops API", 0.08, 0x4D54E7, 0.006, [-0.4, 0, 2.7], [-1.5708, 0, 0], "title")
+load.text("Dotops API", 0.08, 0x4D54E7, 0.02, [-0.4, -0.006, 2.8], [-1.5708, 0, 0], "title")
 
 // Bill Board
 //load.model("models/section_art/floor_board/fb_bill_board_image.gltf", [0.53, 0.18, 0.8], [0, -0.44, 0], [0.3, 0.3, 0.3])
@@ -233,8 +233,8 @@ load.text("Dotops API", 0.08, 0x4D54E7, 0.006, [-0.4, 0, 2.7], [-1.5708, 0, 0], 
 //scene.add(billBoardLight)
 
 // Description 1
-load.text("An API that gamifys sales targets", 0.037, 0xedeef0, 0, [-0.4, 0.001, 2.78], [-1.571, 0, 0])
-load.text("allowing restraunt teams to compete.", 0.037, 0xedeef0, 0, [-0.4, 0.001, 2.86], [-1.571, 0, 0])
+load.text("An API that gamifys sales targets", 0.037, 0xedeef0, 0, [-0.4, 0.001, 2.88], [-1.571, 0, 0])
+load.text("allowing restraunt teams to compete.", 0.037, 0xedeef0, 0, [-0.4, 0.001, 2.96], [-1.571, 0, 0])
 
 // Server Racks
 load.model("models/section_art/dotops/server_racks.gltf", [-0.2, 0.11, 3.3], [0, 0, 0], [0.55, 0.55, 0.55])
@@ -385,24 +385,10 @@ const clock = new THREE.Clock()
 // = = = = = Animation Loop = = = = =
 const tick = () => {
 
-    stats.begin()
-
-    //render()
+    //stats.begin()
     document.body.style.cursor = "default";
-    //render_linkedin_button()
-    //render_github_button()
 
-    //render_code_button1()
-    //render_images_button()
-
-    //render_code_button2()
-    //render_video_button()
-
-    //render_contact_button()
-    //render_resume_button()
-
-    button_render()
-    
+    button_render()    
 
     // Render
     renderer.render(scene, camera)
@@ -410,7 +396,7 @@ const tick = () => {
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 
-    stats.end()
+    //stats.end()
 
 }
 

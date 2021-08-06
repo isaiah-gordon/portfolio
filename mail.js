@@ -28,3 +28,5 @@ function sendMail(email, subject, message, callback) {
 }
 
 module.exports = sendMail
+
+
