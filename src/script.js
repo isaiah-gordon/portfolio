@@ -194,7 +194,7 @@ var mcdSign = load.model("models/section_art/floor_board/mcd_sign.gltf", [-0.44,
 load.text("Currently being tested at a", 0.03, 0x878787, 0, [-0.04, 0.001, 1.15], [-1.571, 0, 0])
 load.text("few locations, my software is", 0.03, 0x878787, 0, [-0.04, 0.001, 1.21], [-1.571, 0, 0])
 load.text("displayed on a large monitor", 0.03, 0x878787, 0, [-0.04, 0.001, 1.27], [-1.571, 0, 0])
-load.text('where staff can easly see it.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.33], [-1.571, 0, 0])
+load.text('where staff can easily see it.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.33], [-1.571, 0, 0])
 load.text('It shows how much of a certain', 0.03, 0x878787, 0, [-0.04, 0.001, 1.39], [-1.571, 0, 0])
 load.text('product is being sold.', 0.03, 0x878787, 0, [-0.04, 0.001, 1.45], [-1.571, 0, 0])
 
@@ -233,7 +233,7 @@ load.text("Dotops API", 0.08, 0x4D54E7, 0.02, [-0.4, -0.006, 2.8], [-1.5708, 0, 
 //scene.add(billBoardLight)
 
 // Description 1
-load.text("An API that gamifys sales targets", 0.037, 0xedeef0, 0, [-0.4, 0.001, 2.88], [-1.571, 0, 0])
+load.text("An API that gamifys sales targets,", 0.037, 0xedeef0, 0, [-0.4, 0.001, 2.88], [-1.571, 0, 0])
 load.text("allowing restraunt teams to compete.", 0.037, 0xedeef0, 0, [-0.4, 0.001, 2.96], [-1.571, 0, 0])
 
 // Server Racks

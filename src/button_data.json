@@ -21,7 +21,7 @@
     "position": [ -0.1, 0.03, 2.05 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.3, 0.1, 0.1 ],
-    "top_light_color": "#dbdbdb"
+    "top_light_color": "#0335fc"
   },
   "images": {
     "link_source": false,
@@ -29,7 +29,7 @@
     "position": [ 0.35, 0.03, 2.05 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.4, 0.1, 0.1 ],
-    "top_light_color": "#dbdbdb"
+    "top_light_color": "#4dff55"
   },
   "code2": {
     "link_source": "https://github.com/isaiah-gordon/dotops",
@@ -37,7 +37,7 @@
     "position": [ -0.1, 0.03, 4 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.3, 0.1, 0.1 ],
-    "top_light_color": "#dbdbdb"
+    "top_light_color": "#0335fc"
   },
   "video": {
     "link_source": false,
@@ -45,7 +45,7 @@
     "position": [ 0.35, 0.03, 4 ],
     "scale": 0.6,
     "bound_box_scale": [ 0.4, 0.1, 0.1 ],
-    "top_light_color": "#dbdbdb"
+    "top_light_color": "#4dff55"
   },
   "contact": {
     "link_source": false,
